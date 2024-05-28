@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import HomeAdmin from "@/components/admin/HomeAdmin";
-import HomeCustomer from "@/components/customer/HomeCustomer";
+import HomeCustomer from "@/components/admin/HomeCustomer";
 import Header from "@/components/admin/Header";
 
 export default async function ProtectedPage() {

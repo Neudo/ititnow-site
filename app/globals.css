@@ -23,7 +23,7 @@
 }
 
 .navbar {
-  background: linear-gradient(195deg, rgb(66,66,74), rgb(25,25,25)) ;
+  background: linear-gradient(195deg, rgba(66,66,74,1), rgb(25,25,25,1)) ;
   box-shadow: 0 2px 4px rgba(0, 0, 0.5, 0.1);
   color: aliceblue;
   margin: 1rem;

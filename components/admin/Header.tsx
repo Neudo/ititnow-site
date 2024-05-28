@@ -19,14 +19,14 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
 
     return (
         <div>
-            <span className="p-[13px] absolute top-0 right-0 md:hidden" onClick={handleHeader}>
+            <span className="p-[13px] absolute top-0 right-0 lg:hidden" onClick={handleHeader}>
             <FiMenu size={20}/>
             </span>
-            <div className={`navbar flex fixed top-0 ${navHidden ? 'hide-nav' : 'translate-x-0'} md:translate-x-0 left-0 flex-col transition duration-300 ease-in-out`}>
-                <span className="p-[13px] absolute top-0 right-0 md:hidden" onClick={handleHeader}>
+            <div className={`navbar flex fixed top-0 ${navHidden ? 'hide-nav' : 'translate-x-0'} lg:translate-x-0 left-0 flex-col transition duration-300 ease-in-out`}>
+                <span className="p-[13px] absolute top-0 right-0 lg:hidden" onClick={handleHeader}>
                     <IoMdClose size={20} color={'lightgrey'}/>
                 </span>
-                <div className="p-6 flex items-center gap-x-2">
+                <div className="px-6 pt-6 pb-10 flex items-center gap-x-2">
                     <Image
                         src={"/logo.png"}
                         width={33}
@@ -40,25 +40,25 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                     <div className="p-6 flex flex-col gap-6">
                         <div className="flex gap-x-2 items-center">
                             <MdDashboard size={20}/>
-                            <Link href="/protected">Dashboard</Link>
+                            <Link onClick={handleHeader} href="/protected">Dashboard</Link>
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <FaCalendarAlt size={20}/>
-                            <Link href="/protected/events">Évènements</Link>
+                            <Link onClick={handleHeader} href="/protected/events">Évènements</Link>
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <FaUserFriends size={20}/>
-                            <Link href="/protected/customers">Utilisateurs</Link>
+                            <Link onClick={handleHeader} href="/protected/customers">Utilisateurs</Link>
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <MdManageAccounts size={20}/>
-                            <Link href="/protected/me">Mon profile</Link>
+                            <Link onClick={handleHeader} href="/protected/me">Mon profile</Link>
                         </div>
                     </div>
                     <div className="p-6" >
                         <button
                             // onClick={signOut}
-                            className="py-2 px-4 rounded-md no-underline bg-btn-background text-black hover:bg-btn-background-hover flex gap-x-2">
+                            className="py-2 px-4 rounded-md no-underline bg-slate-200 text-black hover:bg-btn-background-hover flex gap-x-2">
                             <FiLogOut size={20}/>
                             Déconnexion
                         </button>
