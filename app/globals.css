@@ -31,6 +31,10 @@
   height: calc(100vh - 2rem);
 }
 
+.hide-nav{
+  transform: translateX(-100vw);
+}
+
 @keyframes animateIn {
   from {
     opacity: 0;

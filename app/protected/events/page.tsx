@@ -9,5 +9,7 @@ export default async function Page() {
         return <pre>{JSON.stringify(error, null, 2)}</pre>;
     }
 
-    return <pre>{JSON.stringify(Events, null, 2)}</pre>;
+    return <div className="flex">
+        {JSON.stringify(Events, null, 2)}
+    </div>;
 }
