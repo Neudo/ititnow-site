@@ -10,14 +10,6 @@
     --foreground: 200 50% 3%;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 200 50% 3%;
-      --btn-background: 200 10% 9%;
-      --btn-background-hover: 200 10% 12%;
-      --foreground: 200 20% 96%;
-    }
-  }
 }
 
 @layer base {
@@ -28,6 +20,15 @@
 
 .animate-in {
   animation: animateIn 0.3s ease 0.15s both;
+}
+
+.navbar {
+  background: linear-gradient(195deg, rgb(66,66,74), rgb(25,25,25)) ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0.5, 0.1);
+  color: aliceblue;
+  margin: 1rem;
+  border-radius: .75rem;
+  height: calc(100vh - 2rem);
 }
 
 @keyframes animateIn {
