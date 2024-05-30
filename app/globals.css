@@ -22,8 +22,17 @@
     animation: animateIn 0.3s ease 0.15s both;
 }
 
+.primary-green{
+    background: #51796F;
+}
+
+.primary-green-linear{
+    background: linear-gradient(195deg, #51796F, #35574d) ;
+}
+
 .navbar {
-    background: linear-gradient(195deg, rgba(66,66,74,1), rgb(25,25,25,1)) ;
+    /*background: linear-gradient(195deg, rgba(66,66,74,1), rgb(25,25,25,1)) ;*/
+    background: linear-gradient(195deg, #51796F, #35574d) ;
     box-shadow: 0 2px 4px rgba(0, 0, 0.5, 0.1);
     color: aliceblue;
     margin: 1rem;
