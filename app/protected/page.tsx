@@ -14,12 +14,11 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect("/login");
   }
-
   const {data:UserLogged} = await supabase.from('Users').select('*').eq('id', user.id).single()
   const isAdmin = UserLogged.isAdmin
 
   return (<div>
-        {isAdmin ? <HomeAdmin/> : <HomeCustomer/>}
+        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer/>}
       </div>
 
   );

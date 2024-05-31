@@ -22,7 +22,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
             <span className="p-[13px] absolute top-0 right-0 lg:hidden" onClick={handleHeader}>
             <FiMenu size={20}/>
             </span>
-            <div className={`navbar flex fixed top-0 ${navHidden ? 'hide-nav' : 'translate-x-0'} lg:translate-x-0 left-0 flex-col transition duration-300 ease-in-out`}>
+            <div className={`navbar flex fixed z-50 top-0 ${navHidden ? 'hide-nav' : 'translate-x-0'} lg:translate-x-0 left-0 flex-col transition duration-300 ease-in-out`}>
                 <span className="p-[13px] absolute top-0 right-0 lg:hidden" onClick={handleHeader}>
                     <IoMdClose size={20} color={'lightgrey'}/>
                 </span>

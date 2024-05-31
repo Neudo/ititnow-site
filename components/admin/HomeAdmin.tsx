@@ -1,11 +1,22 @@
 import React from 'react';
 import Introduction from "@/components/admin/Introduction";
 
-async function HomeAdmin() {
-    return (
+interface User {
+    id: string;
+    email: string;
+    name: string;
+    nBEvents: number;
+    isAdmin: boolean;
+    createdAt: string;
+}
+interface HomeAdminProps {
+    userData: User;
+}
 
+const HomeAdmin: React.FC<HomeAdminProps> = ({userData}) => {
+    return (
         <>
-            <div className="animate-in">Admin</div>
+            <h1 className="animate-in text-3xl font-bold pb-5">Bienvenue, {userData.name}</h1>
             <Introduction/>
         </>
 
