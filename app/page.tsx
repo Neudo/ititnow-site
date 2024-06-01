@@ -3,6 +3,8 @@ import iphone from "./assets/images/iphone-home.png"
 import badgeApple from "./assets/images/badge-apple.png"
 import badgeAndroid from "./assets/images/badge-android.png"
 import barParis from "./assets/images/bar-paris.jpg"
+import Container from "../components/Container";
+import iphoneAuth from "./assets/images/iphone-auth.png"
 export default async function Index() {
 
     return (
@@ -15,9 +17,8 @@ export default async function Index() {
 
             <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-6xl px-3">
 
-                <main className="flex-1 flex flex-col md:flex-row gap-6 items-center">
-
-
+                <main>
+                    <Container>
                     <div className="min-w-[300px] md:w-1/2 relative flex justify-center">
                         <img src={iphone.src} alt="Iphone mokup"
                              className="rounded-lg absolute right-[-35px] bottom-2 scale-75 hidden md:block"/>
@@ -25,7 +26,6 @@ export default async function Index() {
                              className="rounded-lg shadow-lg w-full max-w-[350px] object-cover"
                         />
                     </div>
-
                     <div className="md:w-1/2">
                         <h2 className="font-bold text-4xl mb-2">Découvrez de nouveaux restaurants</h2>
                         <p>Vous indiquez vos préférences, on vous propose des restaux en fonction de vos goûts.
@@ -36,9 +36,31 @@ export default async function Index() {
                             <img src={badgeAndroid.src} alt="Badge android"/>
                         </div>
                     </div>
+                    </Container>
 
+                    <Container>
+                        <div className="">
+                            <h2 className="font-bold text-4xl mb-2">Connectez-vous afin d’accéder
+                                à plus de fonctionnalités</h2>
+                            <p>Ajouter des restaurants à vos favoris : Gardez une liste de vos endroits préférés pour les retrouver facilement plus tard.</p>
+                            <div className="p-5 mt-[22px] relative max-w-[315px] secondary text-center rounded-lg">
+                                <a className="font-bold " href="/login">Connexion</a>
+                            </div>
+                        </div>
+                        <div className="w-[250px]">
+                            <img src={iphoneAuth.src} alt=""/>
+                        </div>
+                    </Container>
 
-
+                    <Container>
+                        <div className="text-center">
+                            <h2 className="font-bold text-4xl mb-2">Accédez aux évènements du moment.</h2>
+                            <p>Vous êtes restaurateur ? Boostez votre visibilité en publiant vos événements sur notre plateforme ! Qu'il s'agisse de soirées à thème, de dégustations exclusives ou de promotions spéciales, notre application vous permet de toucher une audience large et diversifiée, passionnée par la découverte de nouveaux établissements. Rejoignez-nous et faites connaître vos événements en quelques clics !</p>
+                            <div className="p-5 mt-[22px] relative max-w-[315px] secondary text-center rounded-lg mx-auto">
+                                <a className="font-bold" href="/login">Connexion</a>
+                            </div>
+                        </div>
+                    </Container>
 
                 </main>
             </div>
