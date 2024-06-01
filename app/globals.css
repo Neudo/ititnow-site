@@ -28,6 +28,7 @@
 
 .primary-green-linear{
     background: linear-gradient(195deg, #51796F, #35574d) ;
+    color: aliceblue;
 }
 
 .navbar {

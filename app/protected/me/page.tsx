@@ -7,7 +7,7 @@ import EditUserForm from "@/components/forms/EditUserForm";
 function Page() {
     return (
         <>
-        <div>Page d'info perso lol</div>
+        <div>Page d'info perso</div>
         <EditUserForm/>
     </>
     );
