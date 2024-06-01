@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import HomeAdmin from '@/components/admin/HomeAdmin';
 import HomeCustomer from '@/components/admin/HomeCustomer';
 
@@ -12,6 +13,12 @@ interface User {
 
 const ProtectedPage = () => {
 import Header from "@/components/admin/Header";
+=======
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import HomeAdmin from "@/components/admin/HomeAdmin";
+import HomeCustomer from "@/components/admin/HomeCustomer";
+>>>>>>> feature/context
 
 
 
