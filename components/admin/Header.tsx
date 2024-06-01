@@ -10,11 +10,22 @@ import { FiLogOut } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
+import {createClient} from "@/utils/supabase/client";
+import { useRouter } from 'next/navigation';
+
+
 
 function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
     const [navHidden, setNavHidden] = React.useState<boolean>(true);
+    const router = useRouter();
     function handleHeader() {
         setNavHidden(!navHidden);
+    }
+
+    function signOut() {
+        const supabase = createClient();
+        supabase.auth.signOut();
+        router.push('/');
     }
 
     return (
@@ -57,7 +68,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                     </div>
                     <div className="p-6" >
                         <button
-                            // onClick={signOut}
+                            onClick={signOut}
                             className="py-2 px-4 rounded-md no-underline bg-slate-200 text-black hover:bg-btn-background-hover flex gap-x-2">
                             <FiLogOut size={20}/>
                             Déconnexion

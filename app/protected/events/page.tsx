@@ -22,7 +22,7 @@ export default async function Page() {
 
     if (error) {
         console.error('Error fetching events:', error);
-        return <pre>{JSON.stringify(error, null, 2)}</pre>;
+        return <div className="p-8 bg-danger">Erreur lors de la récupération des donées, merci de réessayer plus tard ...</div>;
     }
 
     return <div>
