@@ -1,25 +1,46 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-import HomeAdmin from "@/components/admin/HomeAdmin";
-import HomeCustomer from "@/components/admin/HomeCustomer";
+import HomeAdmin from '@/components/admin/HomeAdmin';
+import HomeCustomer from '@/components/admin/HomeCustomer';
+
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  nBEvents: number;
+  isAdmin: boolean;
+  createdAt: string;
+}
+
+const ProtectedPage = () => {
 import Header from "@/components/admin/Header";
 
-export default async function ProtectedPage() {
-  const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
 
-  if (!user) {
-    return redirect("/login");
-  }
-  const {data:UserLogged} = await supabase.from('Users').select('*').eq('id', user.id).single()
-  const isAdmin = UserLogged.isAdmin
 
-  return (<div>
-        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer/>}
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     console.log('here')
+  //     const response = await fetch('/api/auth/getUser');
+  //     if (response.status === 401) {
+  //       router.push('/login');
+  //       return;
+  //     }
+  //
+  //     const data = await response.json();
+  //     setUser(data);
+  //     setLoading(false);
+  //   };
+  //
+  //   fetchUser();
+  // }, [router]);
+
+
+
+  return (
+      <div>
+          <h1>Protected Page</h1>
+            <HomeAdmin userData={{name: 'TestName'}} />
       </div>
-
   );
-}
+};
+
+export default ProtectedPage;

@@ -1,0 +1,396 @@
+Index: components/tutorial/SignUpUserSteps.tsx
+===================================================================
+diff --git a/components/tutorial/SignUpUserSteps.tsx b/components/tutorial/SignUpUserSteps.tsx
+deleted file mode 100644
+--- a/components/tutorial/SignUpUserSteps.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ /dev/null	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
+@@ -1,22 +0,0 @@
+-import Link from "next/link";
+-import Step from "./Step";
+-
+-export default function SignUpUserSteps() {
+-  return (
+-    <ol className="flex flex-col gap-6">
+-      <Step title="Sign up your first user">
+-        <p>
+-          Head over to the{" "}
+-          <Link
+-            href="/login"
+-            className="font-bold hover:underline text-foreground/80"
+-          >
+-            Login
+-          </Link>{" "}
+-          page and sign up your first user. It's okay if this is just you for
+-          now. Your awesome idea will have plenty of users later!
+-        </p>
+-      </Step>
+-    </ol>
+-  );
+-}
+Index: components/tutorial/FetchDataSteps.tsx
+===================================================================
+diff --git a/components/tutorial/FetchDataSteps.tsx b/components/tutorial/FetchDataSteps.tsx
+deleted file mode 100644
+--- a/components/tutorial/FetchDataSteps.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ /dev/null	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
+@@ -1,99 +0,0 @@
+-import Step from "./Step";
+-import Code from "./Code";
+-
+-const create = `
+-create table notes (
+-  id bigserial primary key,
+-  title text
+-);
+-
+-insert into notes(title)
+-values
+-  ('Today I created a Supabase project.'),
+-  ('I added some data and queried it from Next.js.'),
+-  ('It was awesome!');
+-`.trim();
+-
+-const server = `
+-import { createClient } from '@/utils/supabase/server'
+-
+-export default async function Page() {
+-  const supabase = createClient()
+-  const { data: notes } = await supabase.from('notes').select()
+-
+-  return <pre>{JSON.stringify(notes, null, 2)}</pre>
+-}
+-`.trim();
+-
+-const client = `
+-'use client'
+-
+-import { createClient } from '@/utils/supabase/client'
+-import { useEffect, useState } from 'react'
+-
+-export default function Page() {
+-  const [notes, setNotes] = useState<any[] | null>(null)
+-  const supabase = createClient()
+-
+-  useEffect(() => {
+-    const getData = async () => {
+-      const { data } = await supabase.from('notes').select()
+-      setNotes(data)
+-    }
+-    getData()
+-  }, [])
+-
+-  return <pre>{JSON.stringify(notes, null, 2)}</pre>
+-}
+-`.trim();
+-
+-export default function FetchDataSteps() {
+-  return (
+-    <ol className="flex flex-col gap-6">
+-      <Step title="Create some tables and insert some data">
+-        <p>
+-          Head over to the{" "}
+-          <a
+-            href="https://supabase.com/dashboard/project/_/editor"
+-            className="font-bold hover:underline text-foreground/80"
+-            target="_blank"
+-            rel="noreferrer"
+-          >
+-            Table Editor
+-          </a>{" "}
+-          for your Supabase project to create a table and insert some example
+-          data. If you're stuck for creativity, you can copy and paste the
+-          following into the{" "}
+-          <a
+-            href="https://supabase.com/dashboard/project/_/sql/new"
+-            className="font-bold hover:underline text-foreground/80"
+-            target="_blank"
+-            rel="noreferrer"
+-          >
+-            SQL Editor
+-          </a>{" "}
+-          and click RUN!
+-        </p>
+-        <Code code={create} />
+-      </Step>
+-
+-      <Step title="Query Supabase data from Next.js">
+-        <p>
+-          To create a Supabase client and query data from an Async Server
+-          Component, create a new page.tsx file at{" "}
+-          <span className="px-2 py-1 rounded-md bg-foreground/20 text-foreground/80">
+-            /app/notes/page.tsx
+-          </span>{" "}
+-          and add the following.
+-        </p>
+-        <Code code={server} />
+-        <p>Alternatively, you can use a Client Component.</p>
+-        <Code code={client} />
+-      </Step>
+-
+-      <Step title="Build in a weekend and scale to millions!">
+-        <p>You're ready to launch your product to the world! 🚀</p>
+-      </Step>
+-    </ol>
+-  );
+-}
+Index: components/tutorial/Step.tsx
+===================================================================
+diff --git a/components/tutorial/Step.tsx b/components/tutorial/Step.tsx
+deleted file mode 100644
+--- a/components/tutorial/Step.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ /dev/null	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
+@@ -1,24 +0,0 @@
+-export default function Step({
+-  title,
+-  children,
+-}: {
+-  title: string;
+-  children: React.ReactNode;
+-}) {
+-  return (
+-    <li className="mx-4">
+-      <input type="checkbox" id={title} className={`mr-2 peer`} />
+-      <label
+-        htmlFor={title}
+-        className={`text-lg text-foreground/90 peer-checked:line-through font-semibold hover:cursor-pointer`}
+-      >
+-        {title}
+-      </label>
+-      <div
+-        className={`mx-6 text-foreground/80 text-sm peer-checked:line-through`}
+-      >
+-        {children}
+-      </div>
+-    </li>
+-  );
+-}
+Index: components/tutorial/ConnectSupabaseSteps.tsx
+===================================================================
+diff --git a/components/tutorial/ConnectSupabaseSteps.tsx b/components/tutorial/ConnectSupabaseSteps.tsx
+deleted file mode 100644
+--- a/components/tutorial/ConnectSupabaseSteps.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ /dev/null	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
+@@ -1,62 +0,0 @@
+-import Step from "./Step";
+-
+-export default function ConnectSupabaseSteps() {
+-  return (
+-    <ol className="flex flex-col gap-6">
+-      <Step title="Create Supabase project">
+-        <p>
+-          Head over to{" "}
+-          <a
+-            href="https://app.supabase.com/project/_/settings/api"
+-            target="_blank"
+-            className="font-bold hover:underline text-foreground/80"
+-            rel="noreferrer"
+-          >
+-            database.new
+-          </a>{" "}
+-          and create a new Supabase project.
+-        </p>
+-      </Step>
+-
+-      <Step title="Declare environment variables">
+-        <p>
+-          Rename the{" "}
+-          <span className="px-2 py-1 rounded-md bg-foreground/20 text-foreground/80">
+-            .env.example
+-          </span>{" "}
+-          file in your Next.js app to{" "}
+-          <span className="px-2 py-1 rounded-md bg-foreground/20 text-foreground/80">
+-            .env.local
+-          </span>{" "}
+-          and populate with values from{" "}
+-          <a
+-            href="https://app.supabase.com/project/_/settings/api"
+-            target="_blank"
+-            className="font-bold hover:underline text-foreground/80"
+-            rel="noreferrer"
+-          >
+-            your Supabase project's API Settings
+-          </a>
+-          .
+-        </p>
+-      </Step>
+-
+-      <Step title="Restart your Next.js development server">
+-        <p>
+-          You may need to quit your Next.js development server and run{" "}
+-          <span className="px-2 py-1 rounded-md bg-foreground/20 text-foreground/80">
+-            npm run dev
+-          </span>{" "}
+-          again to load the new environment variables.
+-        </p>
+-      </Step>
+-
+-      <Step title="Refresh the page">
+-        <p>
+-          You may need to refresh the page for Next.js to load the new
+-          environment variables.
+-        </p>
+-      </Step>
+-    </ol>
+-  );
+-}
+Index: components/tutorial/Code.tsx
+===================================================================
+diff --git a/components/tutorial/Code.tsx b/components/tutorial/Code.tsx
+deleted file mode 100644
+--- a/components/tutorial/Code.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ /dev/null	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
+@@ -1,58 +0,0 @@
+-"use client";
+-
+-import { useState } from "react";
+-
+-const CopyIcon = () => (
+-  <svg
+-    xmlns="http://www.w3.org/2000/svg"
+-    width="20"
+-    height="20"
+-    viewBox="0 0 24 24"
+-    fill="none"
+-    stroke="currentColor"
+-    strokeWidth="2"
+-    strokeLinecap="round"
+-    strokeLinejoin="round"
+-  >
+-    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+-    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+-  </svg>
+-);
+-
+-const CheckIcon = () => (
+-  <svg
+-    xmlns="http://www.w3.org/2000/svg"
+-    width="20"
+-    height="20"
+-    viewBox="0 0 24 24"
+-    fill="none"
+-    stroke="currentColor"
+-    strokeWidth="2"
+-    strokeLinecap="round"
+-    strokeLinejoin="round"
+-  >
+-    <polyline points="20 6 9 17 4 12"></polyline>
+-  </svg>
+-);
+-
+-export default function Code({ code }: { code: string }) {
+-  const [icon, setIcon] = useState(CopyIcon);
+-
+-  const copy = async () => {
+-    await navigator?.clipboard?.writeText(code);
+-    setIcon(CheckIcon);
+-    setTimeout(() => setIcon(CopyIcon), 2000);
+-  };
+-
+-  return (
+-    <pre className="bg-foreground/5 rounded-md p-8 my-8 relative">
+-      <button
+-        onClick={copy}
+-        className="absolute top-4 right-4  p-2 rounded-md bg-foreground/5 hover:bg-foreground/10"
+-      >
+-        {icon}
+-      </button>
+-      <code>{code}</code>
+-    </pre>
+-  );
+-}
+Index: components/admin/HomeAdmin.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\nimport Introduction from \"@/components/admin/Introduction\";\n\ninterface User {\n    id: string;\n    email: string;\n    name: string;\n    nBEvents: number;\n    isAdmin: boolean;\n    createdAt: string;\n}\ninterface HomeAdminProps {\n    userData: User;\n}\n\nconst HomeAdmin: React.FC<HomeAdminProps> = ({userData}) => {\n    return (\n        <>\n            <h1 className=\"animate-in text-3xl font-bold pb-5\">Bienvenue, {userData.name}</h1>\n            <Introduction/>\n        </>\n\n    );\n}\n\nexport default HomeAdmin;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/admin/HomeAdmin.tsx b/components/admin/HomeAdmin.tsx
+--- a/components/admin/HomeAdmin.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ b/components/admin/HomeAdmin.tsx	(date 1717255672977)
+@@ -10,7 +10,7 @@
+     createdAt: string;
+ }
+ interface HomeAdminProps {
+-    userData: User;
++    userData: any;
+ }
+ 
+ const HomeAdmin: React.FC<HomeAdminProps> = ({userData}) => {
+Index: app/protected/page.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { createClient } from \"@/utils/supabase/server\";\nimport { redirect } from \"next/navigation\";\nimport HomeAdmin from \"@/components/admin/HomeAdmin\";\nimport HomeCustomer from \"@/components/admin/HomeCustomer\";\nimport Header from \"@/components/admin/Header\";\n\nexport default async function ProtectedPage() {\n  const supabase = createClient();\n\n  const {\n    data: { user },\n  } = await supabase.auth.getUser();\n\n  if (!user) {\n    return redirect(\"/login\");\n  }\n  const {data:UserLogged} = await supabase.from('Users').select('*').eq('id', user.id).single()\n  const isAdmin = UserLogged.isAdmin\n\n  return (<div>\n        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer/>}\n      </div>\n\n  );\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/protected/page.tsx b/app/protected/page.tsx
+--- a/app/protected/page.tsx	(revision 349261f103cdf46f756daa2e6b0b0d1f6e29fca8)
++++ b/app/protected/page.tsx	(date 1717255673000)
+@@ -1,25 +1,46 @@
+-import { createClient } from "@/utils/supabase/server";
+-import { redirect } from "next/navigation";
+-import HomeAdmin from "@/components/admin/HomeAdmin";
+-import HomeCustomer from "@/components/admin/HomeCustomer";
++import HomeAdmin from '@/components/admin/HomeAdmin';
++import HomeCustomer from '@/components/admin/HomeCustomer';
++
++interface User {
++  id: string;
++  email: string;
++  name: string;
++  nBEvents: number;
++  isAdmin: boolean;
++  createdAt: string;
++}
++
++const ProtectedPage = () => {
+ import Header from "@/components/admin/Header";
+ 
+-export default async function ProtectedPage() {
+-  const supabase = createClient();
++
+ 
+-  const {
+-    data: { user },
+-  } = await supabase.auth.getUser();
+ 
+-  if (!user) {
+-    return redirect("/login");
+-  }
+-  const {data:UserLogged} = await supabase.from('Users').select('*').eq('id', user.id).single()
+-  const isAdmin = UserLogged.isAdmin
++  // useEffect(() => {
++  //   const fetchUser = async () => {
++  //     console.log('here')
++  //     const response = await fetch('/api/auth/getUser');
++  //     if (response.status === 401) {
++  //       router.push('/login');
++  //       return;
++  //     }
++  //
++  //     const data = await response.json();
++  //     setUser(data);
++  //     setLoading(false);
++  //   };
++  //
++  //   fetchUser();
++  // }, [router]);
+ 
+-  return (<div>
+-        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer/>}
++
++
++  return (
++      <div>
++          <h1>Protected Page</h1>
++            <HomeAdmin userData={{name: 'TestName'}} />
+       </div>
+-
+   );
+-}
++};
++
++export default ProtectedPage;
+diff --git a/components/admin/forms/UserInfosForm.tsx b/components/admin/forms/UserInfosForm.tsx
+new file mode 100644

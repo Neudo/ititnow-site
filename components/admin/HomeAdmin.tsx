@@ -10,7 +10,7 @@ interface User {
     createdAt: string;
 }
 interface HomeAdminProps {
-    userData: User;
+    userData: any;
 }
 
 const HomeAdmin: React.FC<HomeAdminProps> = ({userData}) => {
