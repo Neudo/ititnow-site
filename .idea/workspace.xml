@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="update user ok">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="start merge edit user form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/customHook/useUser.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/protected/me/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/me/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/AccountForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/AccountForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717335280326</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="start merge edit user form">
+      <option name="closed" value="true" />
+      <created>1717338738996</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717338738996</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +198,7 @@
     <MESSAGE value="fix front" />
     <MESSAGE value="all good" />
     <MESSAGE value="update user ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="update user ok" />
+    <MESSAGE value="start merge edit user form" />
+    <option name="LAST_COMMIT_MESSAGE" value="start merge edit user form" />
   </component>
 </project>

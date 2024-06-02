@@ -1,5 +1,5 @@
-import AccountForm from '@/components/forms/AccountForm'
 import { createClient } from '@/utils/supabase/server'
+import EditUserForm from "@/components/forms/EditUserForm";
 
 export default async function Page() {
     const supabase = createClient()
@@ -8,5 +8,5 @@ export default async function Page() {
         data: { user },
     } = await supabase.auth.getUser()
 
-    return <AccountForm user={user} />
+    return <EditUserForm user={user} />
 }

@@ -26,24 +26,78 @@ const formSchema = z.object({
     passwordConfirmation: z.string().min(8).max(50),
 });
 
-function EditUserForm() {
+function EditUserForm({ user }: { user: User | null }) {
+    const supabase = createClient()
+    const [loading, setLoading] = useState(true)
+    const [name, setName] = useState<string | null>(null)
+    const [email, setEmail] = useState<string | null>(null)
+    const [avatar, setAvatar] = useState<string | null>(null)
+    const [password, setPassword] = useState<string | null>(null)
     const router = useRouter();
-    const [user, setUser] = React.useState(null);
+
+    const getProfile = useCallback(async () => {
+        try {
+            setLoading(true)
+
+            const { data, error, status } = await supabase
+                .from('Users')
+                .select(`name, email, avatar, password`)
+                .eq('id', user?.id)
+                .single()
+
+            if (error && status !== 406) {
+                console.log(error)
+                throw error
+            }
+
+            if (data) {
+                setName(data.name)
+                setEmail(data.email)
+                setAvatar(data.avatar)
+                setPassword(data.password)
+            }
+        } catch (error) {
+            alert('Error loading user data!')
+        } finally {
+            setLoading(false)
+        }
+    }, [user, supabase])
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch('http://localhost:8000/events');
-                const data = await response.json();
-                setUser(data);
-                console.log(data);
-            } catch (error) {
-                console.error('Error fetching user:', error);
-            }
-        };
+        getProfile()
+    }, [user, getProfile])
 
-        fetchUser();
-    }, [router]);
+    async function updateProfile({
+                                     name,
+                                     email,
+                                     avatar,
+                                     password
+                                 }: {
+        name: string | null
+        email: string | null
+        avatar: string | null
+        password: string | null
+    }) {
+        try {
+            setLoading(true)
+
+            const { error } = await supabase.from('Users').upsert({
+                id: user?.id as string,
+                name: name,
+                email,
+                avatar,
+                password: password,
+            })
+            if (error) throw error
+            alert('Profile updated!')
+        } catch (error) {
+            console.log(error)
+            alert('Error updating the data!')
+        } finally {
+            setLoading(false)
+        }
+    }
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -55,14 +109,11 @@ function EditUserForm() {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
-    }
 
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form className="space-y-8">
                     <FormField
                         control={form.control}
                         name="name"
@@ -70,7 +121,10 @@ function EditUserForm() {
                             <FormItem>
                                 <FormLabel>Pseudo</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Pseudo" {...field} />
+                                    <Input placeholder={name || ''} {...field}
+                                           value={name || ''}
+                                           onChange={(e) => setName(e.target.value)}
+                                    />
                                 </FormControl>
                                 <FormDescription>
                                     This is your public display name.
@@ -86,7 +140,12 @@ function EditUserForm() {
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="blabla@gmail.com" {...field} />
+                                    <Input
+                                        type={"email"}
+                                        placeholder={email || ''} {...field}
+                                        value={email || ''}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </FormControl>
                                 <FormDescription>
                                     Votre adresse email
@@ -118,16 +177,17 @@ function EditUserForm() {
                             <FormItem>
                                 <FormLabel>Confirmer votre nouveau mot de passe</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="******" {...field} />
+                                    <Input type={"password"} placeholder="******" {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                    Confirmer votre mot de passe
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button
+                        variant={"secondary"}
+                        onClick={() => updateProfile({name, password, email, avatar})}
+                        disabled={loading}
+                        type="submit">{loading ? 'Loading ...' : 'Update'}</Button>
                 </form>
             </Form>
         </div>
