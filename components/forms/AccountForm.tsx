@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { type User } from '@supabase/supabase-js'
-import Avatar from "@/components/forms/Avatar";
 
 export default function AccountForm({ user }: { user: User | null }) {
     const supabase = createClient()
@@ -106,16 +105,6 @@ export default function AccountForm({ user }: { user: User | null }) {
                     onChange={(e) => setAvatar(e.target.value)}
                 />
             </div>
-
-            <Avatar
-                uid={user?.id ?? null}
-                url={avatar}
-                size={150}
-                onUpload={(url) => {
-                    setAvatar(url)
-                    updateProfile({name,password, email, avatar: url})
-                }}
-            />
 
             <div>
                 <button

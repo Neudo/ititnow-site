@@ -1,16 +1,12 @@
-import React from 'react';
-import EditUserForm from "@/components/forms/EditUserForm";
+import AccountForm from '@/components/forms/AccountForm'
+import { createClient } from '@/utils/supabase/server'
 
+export default async function Page() {
+    const supabase = createClient()
 
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
 
-
-function Page() {
-    return (
-        <>
-        <div>Page d'info perso</div>
-        <EditUserForm/>
-    </>
-    );
+    return <AccountForm user={user} />
 }
-
-export default Page;
