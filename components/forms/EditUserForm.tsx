@@ -124,7 +124,8 @@ function EditUserForm({ user }: { user: User | null }) {
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 shadow-xl rounded-2xl p-6 max-w-[800px] m-auto">
+                    <div className="flex flex-wrap items-start justify-around gap-[20px] mb-5">
                     <FormField
                         control={form.control}
                         name="name"
@@ -186,7 +187,7 @@ function EditUserForm({ user }: { user: User | null }) {
                         name="passwordConfirmation"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Confirmer votre nouveau mot de passe</FormLabel>
+                                <FormLabel>Confirmer mot de passe</FormLabel>
                                 <FormControl>
                                     <Input type={"password"} placeholder="******" {...field} />
                                 </FormControl>
@@ -194,6 +195,7 @@ function EditUserForm({ user }: { user: User | null }) {
                             </FormItem>
                         )}
                     />
+                    </div>
                     <Button
                         variant={"secondary"}
                         disabled={loading}

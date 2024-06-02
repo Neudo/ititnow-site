@@ -63,3 +63,7 @@
         transform: translateY(0);
     }
 }
+
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0!important;
+}

@@ -3,6 +3,7 @@ import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {FaRegEdit} from "react-icons/fa";
 import {convertDate} from "@/lib/utils";
+import EditBtn from "@/components/forms/EditBtn";
 
 interface Event {
     id: string;
@@ -51,7 +52,7 @@ export default async function Page() {
                             <TableCell className="text-center">{event.location}</TableCell>
                             <TableCell className="text-center">{event.author}</TableCell>
                             <TableCell className="text-center"> <span className="px-3 py-2 rounded-full font-bold text-xs" style={convertDate(Date()) === convertDate(event.startDate) ? {backgroundColor: '#de815e', color: 'white'} : {backgroundColor: '#51796F', color:'white'}}>{convertDate(Date()) === convertDate(event.startDate) ? 'En cours' : 'À venir' }</span></TableCell>
-                            <TableCell className="flex justify-end "><FaRegEdit color="#51796F" size={20}/></TableCell>
+                            <TableCell className="flex justify-end "> <EditBtn eventId={event.id} /> <FaRegEdit color="#51796F" size={20}/></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
