@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="form ok, now need avatar and is all good">
-      <change afterPath="$PROJECT_DIR$/components/forms/EditBtn.tsx" afterDir="false" />
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="front form ok">
+      <change afterPath="$PROJECT_DIR$/app/protected/my-events/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717344153786</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="front form ok">
+      <option name="closed" value="true" />
+      <created>1717356205822</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717356205824</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +224,8 @@
     <MESSAGE value="start merge edit user form" />
     <MESSAGE value="form almost good" />
     <MESSAGE value="form ok, now need avatar and is all good" />
-    <option name="LAST_COMMIT_MESSAGE" value="form ok, now need avatar and is all good" />
+    <MESSAGE value="front form ok" />
+    <MESSAGE value="start page my evetns" />
+    <option name="LAST_COMMIT_MESSAGE" value="start page my evetns" />
   </component>
 </project>

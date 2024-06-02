@@ -58,6 +58,10 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                             <Link onClick={handleHeader} href="/protected/events">Évènements</Link>
                         </div>
                         <div className="flex gap-x-2 items-center">
+                            <FaCalendarAlt size={20}/>
+                            <Link onClick={handleHeader} href="/protected/my-events">Mes évènements</Link>
+                        </div>
+                        <div className="flex gap-x-2 items-center">
                             <FaUserFriends size={20}/>
                             <Link onClick={handleHeader} href="/protected/customers">Utilisateurs</Link>
                         </div>
@@ -66,7 +70,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                             <Link onClick={handleHeader} href="/protected/me">Mon profile</Link>
                         </div>
                     </div>
-                    <div className="p-6" >
+                    <div className="p-6">
                         <button
                             onClick={signOut}
                             className="py-2 px-4 rounded-md no-underline bg-slate-200 text-black hover:bg-btn-background-hover flex gap-x-2">
