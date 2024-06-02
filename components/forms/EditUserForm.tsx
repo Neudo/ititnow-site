@@ -21,9 +21,12 @@ import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
     name: z.string().min(2).max(50),
-    email: z.string().min(2).max(50),
+    email: z.string().email().min(2).max(50),
     password: z.string().min(8).max(50),
     passwordConfirmation: z.string().min(8).max(50),
+}).refine((data) => data.password === data.passwordConfirmation, {
+    message: "Les mots de passe doivent correspondre",
+    path: ["passwordConfirmation"], // path of error
 });
 
 function EditUserForm({ user }: { user: User | null }) {
@@ -109,15 +112,23 @@ function EditUserForm({ user }: { user: User | null }) {
         },
     });
 
+    const onSubmit = (data: z.infer<typeof formSchema>) => {
+        updateProfile({
+            name: data.name,
+            email: data.email,
+            avatar,
+            password: data.password,
+        });
+    }
 
     return (
         <div>
             <Form {...form}>
-                <form className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
                         control={form.control}
                         name="name"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Pseudo</FormLabel>
                                 <FormControl>
@@ -129,14 +140,14 @@ function EditUserForm({ user }: { user: User | null }) {
                                 <FormDescription>
                                     This is your public display name.
                                 </FormDescription>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
                         name="email"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
@@ -150,48 +161,47 @@ function EditUserForm({ user }: { user: User | null }) {
                                 <FormDescription>
                                     Votre adresse email
                                 </FormDescription>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
                         name="password"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Nouveau mot de passe</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="******" {...field} />
+                                    <Input type={"password"} placeholder="******" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     Votre nouveau mot de passe
                                 </FormDescription>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
                         name="passwordConfirmation"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Confirmer votre nouveau mot de passe</FormLabel>
                                 <FormControl>
                                     <Input type={"password"} placeholder="******" {...field} />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <Button
                         variant={"secondary"}
-                        onClick={() => updateProfile({name, password, email, avatar})}
                         disabled={loading}
                         type="submit">{loading ? 'Loading ...' : 'Update'}</Button>
                 </form>
             </Form>
         </div>
     );
-}
+    }
 
-export default EditUserForm;
+    export default EditUserForm;
