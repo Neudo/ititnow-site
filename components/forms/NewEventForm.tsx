@@ -26,37 +26,58 @@ import { Calendar } from "@/components/ui/calendar"
 import {CalendarIcon} from "lucide-react";
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-
+import axios from "axios";
+import {useMutation} from "@tanstack/react-query";
 
 const formSchema = z.object({
     title: z.string().min(2).max(50),
     image: z.string().min(2).max(50),
-    dateStart: z.string().min(8).max(50),
-    dateEnd: z.string().min(8).max(50),
-    location: z.string().min(8).max(50),
-    establishment: z.string().min(8).max(50),
-    contact: z.string().min(8).max(50),
+    dateStart: z.date(),
+    dateEnd: z.date(),
+    location: z.string().min(2).max(50),
+    establishment: z.string().min(2).max(50),
+    contact: z.string().min(2).max(50),
 })
 
+const createEvent = async (newEvent: {
+    title: string
+    image: string;
+    dateStart: Date | string;
+    contact: string;
+    location: string;
+    establishment: string;
+    dateEnd: Date | string;
+}) => {
+    console.log("newEvent -> ",newEvent)
+    const response = await axios.post("http://localhost:8000/events/", newEvent)
+    console.log("res.data -> ",response.data)
+    return response.data
+}
 
 
 function NewEventForm() {
     const [loading, setLoading] = useState(false)
-    const [title, setTitle] = useState<string | null>(null)
-    const [image, setImage] = useState<string | null>(null)
-    const [dateStart, setDateStart] = React.useState<Date | undefined>(new Date())
-    const [dateEnd, setDateEnd] = React.useState<Date | undefined>(new Date())
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
-
-
+    const [newEvent, setNewEvent] = useState<Event | null>(null)
+    const mutation = useMutation({
+        mutationFn: createEvent,
+        onSuccess: () => {
+            console.log("Event created")
+            setLoading(false)
+        },
+        onError: () => {
+            console.log("Error creating event")
+            setLoading(false)
+        }
+    })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
             image: "",
-            dateStart: "",
-            dateEnd: "",
+            dateStart: new Date(),
+            dateEnd: new Date(),
             location: "",
             establishment: "",
             contact: "",
@@ -64,7 +85,16 @@ function NewEventForm() {
     })
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+        createEvent({
+            title: values.title,
+            image: values.image,
+            dateStart: new Date(values.dateStart).toISOString(),
+            dateEnd: new Date(values.dateEnd).toISOString(),
+            location: values.location,
+            establishment: values.establishment,
+            contact: values.contact,
+        })
+
     }
 
 
@@ -90,10 +120,7 @@ function NewEventForm() {
                                     <FormItem className={"w-full"}>
                                         <FormLabel>Titre</FormLabel>
                                         <FormControl>
-                                            <Input placeholder={'Soirée blind test'} {...field}
-                                                   value={title || ''}
-                                                   onChange={(e) => setTitle(e.target.value)}
-                                            />
+                                            <Input placeholder={'Soirée blind test'} {...field}/>
                                         </FormControl>
                                         <FormDescription>
                                             Titre de l'évènement.
@@ -109,11 +136,7 @@ function NewEventForm() {
                                     <FormItem>
                                         <FormLabel>Image</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                {...field}
-                                                value={image || ''}
-                                                onChange={(e) => setImage(e.target.value)}
-                                            />
+                                            <Input {...field}/>
                                         </FormControl>
                                         <FormDescription>
                                             Vous pouvez ajouter une image. Formats autorisés : .jpg, .png, .jpeg
@@ -126,33 +149,39 @@ function NewEventForm() {
                                 control={form.control}
                                 name="dateStart"
                                 render={({field}) => (
-                                    <FormItem>
+                                    <FormItem className="flex flex-col">
                                         <FormLabel>Date de l'évènement</FormLabel>
-                                        <FormControl>
-                                            <Popover>
-                                                <PopoverTrigger asChild>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
                                                     <Button
                                                         variant={"outline"}
                                                         className={cn(
-                                                            "w-[280px] justify-start text-left font-normal",
-                                                            !dateStart && "text-muted-foreground"
+                                                            "w-[240px] pl-3 text-left font-normal",
+                                                            !field.value && "text-muted-foreground"
                                                         )}
                                                     >
-                                                        <CalendarIcon className="mr-2 h-4 w-4"/>
-                                                        {dateStart ? format(dateStart, "PPP") :
-                                                            <span>Pick a date</span>}
+                                                        {field.value ? (
+                                                            format(field.value, "PPP")
+                                                        ) : (
+                                                            <span>Pick a date</span>
+                                                        )}
+                                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                                     </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="w-auto p-0">
-                                                    <Calendar
-                                                        mode="single"
-                                                        selected={dateStart}
-                                                        onSelect={setDateStart}
-                                                        initialFocus
-                                                    />
-                                                </PopoverContent>
-                                            </Popover>
-                                        </FormControl>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                    mode="single"
+                                                    selected={new Date(field.value)}
+                                                    onSelect={field.onChange}
+                                                    disabled={(date) =>
+                                                        date < new Date()
+                                                    }
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
                                         <FormDescription>
                                             Date de début de votre évènement.
                                         </FormDescription>
@@ -173,42 +202,49 @@ function NewEventForm() {
                             {duration && (
                                 <FormField
                                     control={form.control}
-                                    name="dateStart"
+                                    name="dateEnd"
                                     render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Date de fin</FormLabel>
-                                            <FormControl>
-                                                <Popover>
-                                                    <PopoverTrigger asChild>
+                                        <FormItem className="flex flex-col">
+                                            <FormLabel>Date de l'évènement</FormLabel>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <FormControl>
                                                         <Button
                                                             variant={"outline"}
                                                             className={cn(
-                                                                "w-[280px] justify-start text-left font-normal",
-                                                                !dateStart && "text-muted-foreground"
+                                                                "w-[240px] pl-3 text-left font-normal",
+                                                                !field.value && "text-muted-foreground"
                                                             )}
                                                         >
-                                                            <CalendarIcon className="mr-2 h-4 w-4"/>
-                                                            {dateEnd ? format(dateEnd, "PPP") :
-                                                                <span>Pick a date</span>}
+                                                            {field.value ? (
+                                                                format(field.value, "PPP")
+                                                            ) : (
+                                                                <span>Pick a date</span>
+                                                            )}
+                                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                                         </Button>
-                                                    </PopoverTrigger>
-                                                    <PopoverContent className="w-auto p-0">
-                                                        <Calendar
-                                                            mode="single"
-                                                            selected={dateEnd}
-                                                            onSelect={setDateEnd}
-                                                            initialFocus
-                                                        />
-                                                    </PopoverContent>
-                                                </Popover>
-                                            </FormControl>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={new Date(field.value)}
+                                                        onSelect={field.onChange}
+                                                        disabled={(date) =>
+                                                            date < new Date()
+                                                        }
+                                                        initialFocus
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
                                             <FormDescription>
-                                                Date de fin de votre évènement.
+                                                Date de début de votre évènement.
                                             </FormDescription>
                                             <FormMessage/>
                                         </FormItem>
                                     )}
                                 />
+
                             )}
 
                             <FormField
@@ -264,14 +300,11 @@ function NewEventForm() {
                         <Button
                             variant={"secondary"}
                             disabled={loading}
-                            type="submit">{loading ? 'Loading ...' : 'Update'}</Button>
+                            type="submit">{loading ? 'Loading ...' : 'Envoyer'}</Button>
                     </form>
                 </Form>
-
-
             </SheetContent>
         </Sheet>
-
     );
 }
 
