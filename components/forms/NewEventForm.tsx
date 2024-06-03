@@ -41,7 +41,7 @@ const formSchema = z.object({
 
 
 function NewEventForm() {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [title, setTitle] = useState<string | null>(null)
     const [image, setImage] = useState<string | null>(null)
     const [dateStart, setDateStart] = React.useState<Date | undefined>(new Date())

@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="start form publish event">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="form front 90% ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/calendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +71,7 @@
       <workItem from="1717096751155" duration="8317000" />
       <workItem from="1717180738997" duration="19016000" />
       <workItem from="1717254949993" duration="1273000" />
-      <workItem from="1717367020485" duration="10149000" />
+      <workItem from="1717367020485" duration="11052000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -209,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717362927217</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="form front 90% ok">
+      <option name="closed" value="true" />
+      <created>1717420028443</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717420028443</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +244,7 @@
     <MESSAGE value="front form ok" />
     <MESSAGE value="start page my evetns" />
     <MESSAGE value="start form publish event" />
-    <option name="LAST_COMMIT_MESSAGE" value="start form publish event" />
+    <MESSAGE value="form front 90% ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="form front 90% ok" />
   </component>
 </project>
