@@ -1,18 +1,27 @@
 "use client"
-import React, {useEffect} from 'react';
-import {Button} from "@/components/ui/button";
-import {getCurrentUser} from "@/utils/supabase/client";
+import {createClient} from "@/utils/supabase/client";
+import React, {useEffect} from "react";
 import NewEventForm from "@/components/forms/NewEventForm";
+import ListMyEvents from "@/components/admin/ListMyEvents";
 
 function Page() {
+    const [userId, setUserId] = React.useState<string | null>(null);
 
     useEffect(() => {
-        getCurrentUser()
+        const fetchUser = async () => {
+            const supabase = createClient();
+            const { data: userLogged } = await supabase.auth.getUser();
+            if (userLogged && userLogged.user) {
+                setUserId(userLogged.user.id);
+            }
+        };
+        fetchUser();
     }, []);
 
     return (
         <>
-            <NewEventForm/>
+            {userId && <NewEventForm userId={userId} />}
+            {userId && <ListMyEvents userId={userId} />}
         </>
     );
 }

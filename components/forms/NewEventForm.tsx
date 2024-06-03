@@ -13,6 +13,8 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Textarea } from "@/components/ui/textarea"
+
 
 
 import { IoAddCircleOutline } from "react-icons/io5";
@@ -29,8 +31,14 @@ import { cn } from "@/lib/utils"
 import axios from "axios";
 import {useMutation} from "@tanstack/react-query";
 
+interface NewEventFormProps {
+    userId: string;
+}
+
+
 const formSchema = z.object({
     title: z.string().min(2).max(50),
+    description: z.string().max(500),
     image: z.string().min(2).max(50),
     dateStart: z.date(),
     dateEnd: z.date(),
@@ -40,25 +48,37 @@ const formSchema = z.object({
 })
 
 const createEvent = async (newEvent: {
-    title: string
+    title: string;
+    description: string;
     image: string;
     dateStart: Date | string;
     contact: string;
     location: string;
     establishment: string;
     dateEnd: Date | string;
+    userId: string;
 }) => {
     console.log("newEvent -> ",newEvent)
-    const response = await axios.post("http://localhost:8000/events/", newEvent)
+    const response = await axios.post("http://localhost:8000/events/", {
+        title: newEvent.title,
+        description: newEvent.description,
+        image: newEvent.image,
+        startDate: newEvent.dateStart,
+        endDate: newEvent.dateEnd,
+        location: newEvent.location,
+        author: newEvent.establishment,
+        contact: newEvent.contact,
+        userId: newEvent.userId
+    })
     console.log("res.data -> ",response.data)
     return response.data
 }
 
 
-function NewEventForm() {
+
+function NewEventForm({userId}: {userId: string}) {
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
-    const [newEvent, setNewEvent] = useState<Event | null>(null)
     const mutation = useMutation({
         mutationFn: createEvent,
         onSuccess: () => {
@@ -75,6 +95,7 @@ function NewEventForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
+            description: "",
             image: "",
             dateStart: new Date(),
             dateEnd: new Date(),
@@ -87,12 +108,14 @@ function NewEventForm() {
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         createEvent({
             title: values.title,
+            description: values.description,
             image: values.image,
             dateStart: new Date(values.dateStart).toISOString(),
             dateEnd: new Date(values.dateEnd).toISOString(),
             location: values.location,
             establishment: values.establishment,
             contact: values.contact,
+            userId: userId
         })
 
     }
@@ -124,6 +147,22 @@ function NewEventForm() {
                                         </FormControl>
                                         <FormDescription>
                                             Titre de l'évènement.
+                                        </FormDescription>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="description"
+                                render={({field}) => (
+                                    <FormItem className={"w-full"}>
+                                        <FormLabel>Description</FormLabel>
+                                        <FormControl>
+                                            <Textarea {...field} />
+                                        </FormControl>
+                                        <FormDescription>
+                                            Description de l'évènement.
                                         </FormDescription>
                                         <FormMessage/>
                                     </FormItem>
