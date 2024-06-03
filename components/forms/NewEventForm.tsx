@@ -15,8 +15,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 
-
-
 import { IoAddCircleOutline } from "react-icons/io5";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
@@ -31,11 +29,6 @@ import { cn } from "@/lib/utils"
 import axios from "axios";
 import {useMutation} from "@tanstack/react-query";
 
-interface NewEventFormProps {
-    userId: string;
-}
-
-
 const formSchema = z.object({
     title: z.string().min(2).max(50),
     description: z.string().max(500),
@@ -47,6 +40,8 @@ const formSchema = z.object({
     contact: z.string().min(2).max(50),
 })
 
+console.log(process.env.NEXT_PUBLIC_RENDER_API_URL)
+console.log(process.env.NEXT_PUBLIC_SUPABASE_URL)
 const createEvent = async (newEvent: {
     title: string;
     description: string;
@@ -58,8 +53,7 @@ const createEvent = async (newEvent: {
     dateEnd: Date | string;
     userId: string;
 }) => {
-    console.log("newEvent -> ",newEvent)
-    const response = await axios.post("http://localhost:8000/events/", {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events`, {
         title: newEvent.title,
         description: newEvent.description,
         image: newEvent.image,
@@ -70,12 +64,8 @@ const createEvent = async (newEvent: {
         contact: newEvent.contact,
         userId: newEvent.userId
     })
-    console.log("res.data -> ",response.data)
     return response.data
 }
-
-
-
 function NewEventForm({userId}: {userId: string}) {
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
