@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="add log to test prod">
-      <change afterPath="$PROJECT_DIR$/components/BigCard.tsx" afterDir="false" />
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="now display events logged user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SmallCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/SmallCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/Introduction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Introduction.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/EditBtn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditBtn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +70,7 @@
       <workItem from="1717096751155" duration="8317000" />
       <workItem from="1717180738997" duration="19016000" />
       <workItem from="1717254949993" duration="1273000" />
-      <workItem from="1717367020485" duration="32200000" />
+      <workItem from="1717367020485" duration="34464000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -286,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717443274265</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="now display events logged user">
+      <option name="closed" value="true" />
+      <created>1717446774902</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717446774902</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +306,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start header" />
     <MESSAGE value="layout ok / need signout" />
     <MESSAGE value="refactor some code" />
     <MESSAGE value="add shdcnui" />
@@ -329,6 +330,7 @@
     <MESSAGE value="clean code" />
     <MESSAGE value="fix introduction" />
     <MESSAGE value="add log to test prod" />
-    <option name="LAST_COMMIT_MESSAGE" value="add log to test prod" />
+    <MESSAGE value="now display events logged user" />
+    <option name="LAST_COMMIT_MESSAGE" value="now display events logged user" />
   </component>
 </project>

@@ -26,17 +26,20 @@ const formSchema = z.object({
     passwordConfirmation: z.string().min(8).max(50),
 }).refine((data) => data.password === data.passwordConfirmation, {
     message: "Les mots de passe doivent correspondre",
-    path: ["passwordConfirmation"], // path of error
+    path: ["passwordConfirmation"],
 });
+
+type UserProfile = {
+    name: string | null
+    email: string | null
+    avatar: string | null
+    password: string | null
+};
 
 function EditUserForm({ user }: { user: User | null }) {
     const supabase = createClient()
     const [loading, setLoading] = useState(true)
-    const [name, setName] = useState<string | null>(null)
-    const [email, setEmail] = useState<string | null>(null)
-    const [avatar, setAvatar] = useState<string | null>(null)
-    const [password, setPassword] = useState<string | null>(null)
-    const router = useRouter();
+    const [userLogged, setUserLogged] = useState<User | null>(null)
 
     const getProfile = useCallback(async () => {
         try {
@@ -54,10 +57,9 @@ function EditUserForm({ user }: { user: User | null }) {
             }
 
             if (data) {
-                setName(data.name)
-                setEmail(data.email)
-                setAvatar(data.avatar)
-                setPassword(data.password)
+                console.log(data, "-----------------------")
+               // @ts-ignore
+                setUserLogged(data as UserProfile)
             }
         } catch (error) {
             alert('Error loading user data!')
@@ -116,8 +118,8 @@ function EditUserForm({ user }: { user: User | null }) {
         updateProfile({
             name: data.name,
             email: data.email,
-            avatar,
             password: data.password,
+            avatar: userLogged?.avatar,
         });
     }
 
@@ -133,9 +135,9 @@ function EditUserForm({ user }: { user: User | null }) {
                             <FormItem className={"w-full md:w-[47%]"}>
                                 <FormLabel>Pseudo</FormLabel>
                                 <FormControl>
-                                    <Input placeholder={name || ''} {...field}
-                                           value={name || ''}
-                                           onChange={(e) => setName(e.target.value)}
+                                    <Input
+                                        placeholder={userLogged?.name || ''}
+                                        {...field}
                                     />
                                 </FormControl>
                                 <FormDescription>
@@ -154,9 +156,8 @@ function EditUserForm({ user }: { user: User | null }) {
                                 <FormControl>
                                     <Input
                                         type={"email"}
-                                        placeholder={email || ''} {...field}
-                                        value={email || ''}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder={userLogged?.email || ''}
+                                        {...field}
                                     />
                                 </FormControl>
                                 <FormDescription>
