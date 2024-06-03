@@ -59,7 +59,6 @@ export default async function Page() {
             </Table>
         ) : (
             <p>Loading...</p>
-
         )}
 
     </div>

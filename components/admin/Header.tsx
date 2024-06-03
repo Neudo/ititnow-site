@@ -67,7 +67,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <MdManageAccounts size={20}/>
-                            <Link onClick={handleHeader} href="/protected/me">Mon profile</Link>
+                            <Link onClick={handleHeader} href="/protected/me">Mon profil</Link>
                         </div>
                     </div>
                     <div className="p-6">
