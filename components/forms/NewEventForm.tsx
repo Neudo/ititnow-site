@@ -39,9 +39,6 @@ const formSchema = z.object({
     establishment: z.string().min(2).max(50),
     contact: z.string().min(2).max(50),
 })
-
-console.log(process.env.NEXT_PUBLIC_RENDER_API_URL)
-console.log(process.env.NEXT_PUBLIC_SUPABASE_URL)
 const createEvent = async (newEvent: {
     title: string;
     description: string;
