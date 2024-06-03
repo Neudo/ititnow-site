@@ -2,7 +2,7 @@ import React from 'react';
 
 function ListMyEvents({userId}: {userId: string}) {
     return (
-        <div></div>
+        <div>List de mes évènements</div>
     );
 }
 
