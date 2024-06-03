@@ -130,7 +130,7 @@ function EditUserForm({ user }: { user: User | null }) {
                         control={form.control}
                         name="name"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className={"w-full md:w-[47%]"}>
                                 <FormLabel>Pseudo</FormLabel>
                                 <FormControl>
                                     <Input placeholder={name || ''} {...field}
@@ -149,7 +149,7 @@ function EditUserForm({ user }: { user: User | null }) {
                         control={form.control}
                         name="email"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className={"w-full md:w-[47%]"}>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
                                     <Input
@@ -170,7 +170,7 @@ function EditUserForm({ user }: { user: User | null }) {
                         control={form.control}
                         name="password"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className={"w-full md:w-[47%]"}>
                                 <FormLabel>Nouveau mot de passe</FormLabel>
                                 <FormControl>
                                     <Input type={"password"} placeholder="******" {...field} />
@@ -186,7 +186,7 @@ function EditUserForm({ user }: { user: User | null }) {
                         control={form.control}
                         name="passwordConfirmation"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className={"w-full md:w-[47%]"}>
                                 <FormLabel>Confirmer mot de passe</FormLabel>
                                 <FormControl>
                                     <Input type={"password"} placeholder="******" {...field} />

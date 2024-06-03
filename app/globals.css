@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+    html{
+        color-scheme: light !important;
+    }
     :root {
         --background: 200 20% 98%;
         --btn-background: 200 10% 91%;
@@ -24,6 +27,10 @@
 
 .primary-green{
     background: #51796F;
+}
+.primary-green:hover{
+    background: #576e65;
+
 }
 
 .primary-green-linear{

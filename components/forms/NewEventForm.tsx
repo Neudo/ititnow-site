@@ -7,6 +7,14 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import { Checkbox } from "@/components/ui/checkbox"
+
+
 import { IoAddCircleOutline } from "react-icons/io5";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
@@ -15,6 +23,9 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import { Calendar } from "@/components/ui/calendar"
+import {CalendarIcon} from "lucide-react";
+import { format } from "date-fns"
+import { cn } from "@/lib/utils"
 
 
 const formSchema = z.object({
@@ -34,6 +45,8 @@ function NewEventForm() {
     const [title, setTitle] = useState<string | null>(null)
     const [image, setImage] = useState<string | null>(null)
     const [dateStart, setDateStart] = React.useState<Date | undefined>(new Date())
+    const [dateEnd, setDateEnd] = React.useState<Date | undefined>(new Date())
+    const [duration, setDuration] = React.useState<boolean | undefined>(false)
 
 
 
@@ -55,8 +68,6 @@ function NewEventForm() {
     }
 
 
-
-
     return (
         <Sheet>
             <SheetTrigger className={"primary-green text-white rounded-lg flex items-center p-4 w-fit gap-x-2"}><IoAddCircleOutline size={20} />
@@ -76,7 +87,7 @@ function NewEventForm() {
                                 control={form.control}
                                 name="title"
                                 render={({field}) => (
-                                    <FormItem>
+                                    <FormItem className={"w-full"}>
                                         <FormLabel>Titre</FormLabel>
                                         <FormControl>
                                             <Input placeholder={'Soirée blind test'} {...field}
@@ -96,11 +107,10 @@ function NewEventForm() {
                                 name="image"
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel>Image</FormLabel>
                                         <FormControl>
                                             <Input
-                                                type={"email"}
-                                                 {...field}
+                                                {...field}
                                                 value={image || ''}
                                                 onChange={(e) => setImage(e.target.value)}
                                             />
@@ -119,12 +129,29 @@ function NewEventForm() {
                                     <FormItem>
                                         <FormLabel>Date de l'évènement</FormLabel>
                                         <FormControl>
-                                            <Calendar
-                                                mode="single"
-                                                selected={dateStart}
-                                                onSelect={setDateStart}
-                                                className="rounded-md border"
-                                            />
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button
+                                                        variant={"outline"}
+                                                        className={cn(
+                                                            "w-[280px] justify-start text-left font-normal",
+                                                            !dateStart && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        <CalendarIcon className="mr-2 h-4 w-4"/>
+                                                        {dateStart ? format(dateStart, "PPP") :
+                                                            <span>Pick a date</span>}
+                                                    </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={dateStart}
+                                                        onSelect={setDateStart}
+                                                        initialFocus
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
                                         </FormControl>
                                         <FormDescription>
                                             Date de début de votre évènement.
@@ -133,24 +160,62 @@ function NewEventForm() {
                                     </FormItem>
                                 )}
                             />
-                            <FormField
-                                control={form.control}
-                                name="dateEnd"
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Date de fin</FormLabel>
-                                        <FormControl>
-                                            <Input  {...field} />
-                                        </FormControl>
-                                        <FormMessage/>
-                                    </FormItem>
-                                )}
-                            />
+                            <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                <Checkbox
+                                    checked={duration}
+                                    onCheckedChange={() => setDuration(!duration)}
+                                    id="duration"/> L'évènement se déroule sur plusieurs jours ?
+                            </label>
+
+                            {duration && (
+                                <FormField
+                                    control={form.control}
+                                    name="dateStart"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Date de fin</FormLabel>
+                                            <FormControl>
+                                                <Popover>
+                                                    <PopoverTrigger asChild>
+                                                        <Button
+                                                            variant={"outline"}
+                                                            className={cn(
+                                                                "w-[280px] justify-start text-left font-normal",
+                                                                !dateStart && "text-muted-foreground"
+                                                            )}
+                                                        >
+                                                            <CalendarIcon className="mr-2 h-4 w-4"/>
+                                                            {dateEnd ? format(dateEnd, "PPP") :
+                                                                <span>Pick a date</span>}
+                                                        </Button>
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-auto p-0">
+                                                        <Calendar
+                                                            mode="single"
+                                                            selected={dateEnd}
+                                                            onSelect={setDateEnd}
+                                                            initialFocus
+                                                        />
+                                                    </PopoverContent>
+                                                </Popover>
+                                            </FormControl>
+                                            <FormDescription>
+                                                Date de fin de votre évènement.
+                                            </FormDescription>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
+
                             <FormField
                                 control={form.control}
                                 name="location"
                                 render={({field}) => (
-                                    <FormItem>
+                                    <FormItem className={"w-full"}>
                                         <FormLabel>Lieu</FormLabel>
                                         <FormControl>
                                             <Input placeholder="1 place de la fête - 75012 Paris" {...field} />
@@ -166,8 +231,8 @@ function NewEventForm() {
                                 control={form.control}
                                 name="establishment"
                                 render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Confirmer mot de passe</FormLabel>
+                                    <FormItem className={"w-full"}>
+                                        <FormLabel>Établissement</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Le café de la mairie" {...field} />
                                         </FormControl>
@@ -182,13 +247,14 @@ function NewEventForm() {
                                 control={form.control}
                                 name="contact"
                                 render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Confirmer mot de passe</FormLabel>
+                                    <FormItem className={"w-full"}>
+                                        <FormLabel>Contact</FormLabel>
                                         <FormControl>
                                             <Input placeholder="contact@cafédelamarie.fr" {...field} />
                                         </FormControl>
                                         <FormDescription>
-                                            Si des gens veulent des informations, indiquez comment ils peuvent vous contacter.
+                                            Si des gens veulent des informations, indiquez comment ils peuvent vous
+                                            contacter.
                                         </FormDescription>
                                         <FormMessage/>
                                     </FormItem>
