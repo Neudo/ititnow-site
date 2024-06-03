@@ -61,6 +61,7 @@ const createEvent = async (newEvent: {
         contact: newEvent.contact,
         userId: newEvent.userId
     })
+    console.log(response.data)
     return response.data
 }
 function NewEventForm({userId}: {userId: string}) {

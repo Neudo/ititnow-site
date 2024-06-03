@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="clean code">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="fix introduction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SmallCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/SmallCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/Introduction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Introduction.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +70,7 @@
       <workItem from="1717096751155" duration="8317000" />
       <workItem from="1717180738997" duration="19016000" />
       <workItem from="1717254949993" duration="1273000" />
-      <workItem from="1717367020485" duration="27736000" />
+      <workItem from="1717367020485" duration="28320000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -265,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717441432631</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix introduction">
+      <option name="closed" value="true" />
+      <created>1717442297998</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717442297999</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +314,7 @@
     <MESSAGE value="start list my events" />
     <MESSAGE value="add env" />
     <MESSAGE value="clean code" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
+    <MESSAGE value="fix introduction" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix introduction" />
   </component>
 </project>
