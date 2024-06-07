@@ -27,13 +27,13 @@ const formSchema = z.object({
     path: ["passwordConfirmation"],
 });
 
-type UserProfile = {
+export type UserProfile = {
     id: string
     name: string
     email: string
     avatar: string | null
     password: string
-};
+} | null;
 
 function EditUserForm({ user }: { user: UserProfile | null }) {
     const supabase = createClient()
