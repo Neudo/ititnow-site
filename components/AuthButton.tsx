@@ -19,7 +19,8 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      Salut, {user.email}!
+      <a className="p-2 border rounded-md border-white "  href="/protected">Tableau de bord</a>
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md text-black no-underline bg-btn-background hover:bg-btn-background-hover">
           Déconnexion

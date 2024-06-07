@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="refactor user form">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="update front">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/userLogged/Server.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/userLogged/Server.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AuthButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BodyClassManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/BodyClassManager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/Introduction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Introduction.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/AccountForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/AccountForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sheet.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +75,7 @@
       <workItem from="1717498592079" duration="2554000" />
       <workItem from="1717517500520" duration="1888000" />
       <workItem from="1717605545863" duration="4247000" />
+      <workItem from="1717782375646" duration="1545000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -310,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717449200392</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="update front">
+      <option name="closed" value="true" />
+      <created>1717782526718</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717782526718</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +327,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor some code" />
     <MESSAGE value="add shdcnui" />
     <MESSAGE value="start add table" />
     <MESSAGE value="front users tables ok" />
@@ -353,6 +351,7 @@
     <MESSAGE value="add log to test prod" />
     <MESSAGE value="now display events logged user" />
     <MESSAGE value="refactor user form" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor user form" />
+    <MESSAGE value="update front" />
+    <option name="LAST_COMMIT_MESSAGE" value="update front" />
   </component>
 </project>

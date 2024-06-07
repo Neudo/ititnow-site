@@ -1,8 +1,6 @@
 'use client'
 import React, { useCallback, useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { type User } from '@supabase/supabase-js'
-
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -30,16 +28,17 @@ const formSchema = z.object({
 });
 
 type UserProfile = {
-    name: string | null
-    email: string | null
+    id: string
+    name: string
+    email: string
     avatar: string | null
-    password: string | null
+    password: string
 };
 
-function EditUserForm({ user }: { user: User | null }) {
+function EditUserForm({ user }: { user: UserProfile | null }) {
     const supabase = createClient()
     const [loading, setLoading] = useState(true)
-    const [userLogged, setUserLogged] = useState<User | null>(null)
+    const [userLogged, setUserLogged] = useState<UserProfile | null>(null)
 
     const getProfile = useCallback(async () => {
         try {
@@ -119,7 +118,7 @@ function EditUserForm({ user }: { user: User | null }) {
             name: data.name,
             email: data.email,
             password: data.password,
-            avatar: userLogged?.avatar,
+            avatar: userLogged?.avatar || "",
         });
     }
 
