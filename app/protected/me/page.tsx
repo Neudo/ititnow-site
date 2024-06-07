@@ -11,6 +11,6 @@ export default async function Page() {
     if (user) {
         return <EditUserForm user={user as unknown as UserProfile} />
     } else {
-        return null; // or some fallback UI
+        return <div className="text-red-500" >Vous devez être connecté pour accéder à cette page</div>;
     }
 }

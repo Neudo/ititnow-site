@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="update front">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="fix: user type in page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/protected/me/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/me/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717782526718</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix: user type in page">
+      <option name="closed" value="true" />
+      <created>1717788744100</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717788744100</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +335,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add shdcnui" />
     <MESSAGE value="start add table" />
     <MESSAGE value="front users tables ok" />
     <MESSAGE value="signout ok" />
@@ -352,6 +359,7 @@
     <MESSAGE value="now display events logged user" />
     <MESSAGE value="refactor user form" />
     <MESSAGE value="update front" />
-    <option name="LAST_COMMIT_MESSAGE" value="update front" />
+    <MESSAGE value="fix: user type in page" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: user type in page" />
   </component>
 </project>

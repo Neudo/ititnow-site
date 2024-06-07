@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 
+const origin = process.env.NEXT_PUBLIC_ORIGIN;
+
 export default function Login({
   searchParams,
 }: {
@@ -95,14 +97,14 @@ export default function Login({
         <SubmitButton
           formAction={signIn}
           className="primary-green-linear rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
+          pendingText="Patientez..."
         >
           Connexion
         </SubmitButton>
         <SubmitButton
           formAction={signUp}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing Up..."
+          pendingText="Patientez..."
         >
           Inscription
         </SubmitButton>
