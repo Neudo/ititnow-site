@@ -4,7 +4,6 @@ import SmallCard from "@/components/SmallCard";
 import BigCard from "@/components/BigCard";
 
 async function Introduction() {
-    console.log("introduction")
     const supabase = createClient();
     const today = new Date()
     today.setHours(0, 0, 0, 0)
@@ -23,7 +22,7 @@ async function Introduction() {
         <div className="flex gap-5 flex-col md:flex-row flex-wrap">
             <SmallCard title={"Évènements"} number={Events?.length} color={"#000"} picto={"events"} />
             <SmallCard title={"Nombre d'utilisateurs"} number={Users?.length} color={'#51796F'} picto={"people"} />
-            <SmallCard title={"Évènements en ce moment"} number={EventsNow?.length} color={'#51796F'} picto={"event-now"} />
+            <SmallCard title={"Évènements en ce moment"} number={EventsNow?.length} color={'#245759'} picto={"event-now"} />
             <BigCard title={"Big card"}/>
         {/*BigCard graphique inscrit sur le mois */}
         {/*BigCard graphique events sur le mois */}

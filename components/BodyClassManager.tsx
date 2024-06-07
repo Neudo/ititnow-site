@@ -9,7 +9,6 @@ const BodyClassManager: React.FC = () => {
     useEffect(() => {
         const body = document.body;
         if (pathname === '/') {
-            console.log('if')
             body.classList.remove('bg-sky-100');
             body.classList.add('primary-green-linear');
 

@@ -24,7 +24,6 @@ function ListMyEvents({userId}: {userId: string}) {
         const fetchEvents = async () => {
             const supabase = createClient();
             const {data: myEvents, error} = await supabase.from('Events').select('*').eq('userId', userId)
-            console.log(myEvents)
             if (error) {
                 console.error('Error fetching events:', error);
             }

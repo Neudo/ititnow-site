@@ -61,7 +61,6 @@ const createEvent = async (newEvent: {
         contact: newEvent.contact,
         userId: newEvent.userId
     })
-    console.log(response.data)
     return response.data
 }
 function NewEventForm({userId}: {userId: string}) {
@@ -111,12 +110,12 @@ function NewEventForm({userId}: {userId: string}) {
 
     return (
         <Sheet>
-            <SheetTrigger className={"primary-green text-white rounded-lg flex items-center p-4 w-fit gap-x-2"}><IoAddCircleOutline size={20} />
+            <SheetTrigger className={"primary-green-linear text-white rounded-lg flex items-center p-4 w-fit gap-x-2"}><IoAddCircleOutline size={20} />
                 Publier un évènement</SheetTrigger>
             <SheetContent>
-                <SheetHeader>
+                <SheetHeader className={'p-6'}>
                     <SheetTitle className="text-3xl">Publier mon évènement</SheetTitle>
-                    <SheetDescription>
+                    <SheetDescription >
                         Ajoutez un évènement à la liste des évènements.
                     </SheetDescription>
                 </SheetHeader>
@@ -325,7 +324,7 @@ function NewEventForm({userId}: {userId: string}) {
                             />
                         </div>
                         <Button
-                            variant={"secondary"}
+                            variant={"default"}
                             disabled={loading}
                             type="submit">{loading ? 'Loading ...' : 'Envoyer'}</Button>
                     </form>

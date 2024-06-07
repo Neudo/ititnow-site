@@ -27,15 +27,19 @@
 
 .primary-green{
     background: #51796F;
+    transition: background .3s ease;
 }
 .primary-green:hover{
     background: #576e65;
-
+}
+.primary-green-linear:hover{
+    background: linear-gradient(195deg, #2b5047, #21443a) ;
 }
 
 .primary-green-linear{
     background: linear-gradient(195deg, #51796F, #35574d) ;
     color: aliceblue;
+    transition: background .3s ease;
 }
 
 .navbar {

@@ -22,7 +22,6 @@ export default function AccountForm({ user }: { user: User | null }) {
                 .single()
 
             if (error && status !== 406) {
-                console.log(error)
                 throw error
             }
 
@@ -31,7 +30,6 @@ export default function AccountForm({ user }: { user: User | null }) {
                 setEmail(data.email)
                 setAvatar(data.avatar)
                 setPassword(data.password)
-                console.log("yuu -------",data)
             }
         } catch (error) {
             alert('Error loading user data!')
@@ -69,7 +67,6 @@ export default function AccountForm({ user }: { user: User | null }) {
             alert('Profile updated!')
         } catch (error) {
             console.log(error)
-            console.log("user here",user)
             alert('Error updating the data!')
         } finally {
             setLoading(false)
