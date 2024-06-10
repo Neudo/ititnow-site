@@ -32,7 +32,7 @@ import {useMutation} from "@tanstack/react-query";
 const formSchema = z.object({
     title: z.string().min(2).max(50),
     description: z.string().max(500),
-    image: z.string().min(2).max(50),
+    image: z.string(),
     dateStart: z.date(),
     dateEnd: z.date(),
     location: z.string().min(2).max(50),
@@ -162,7 +162,10 @@ function NewEventForm({userId}: {userId: string}) {
                                     <FormItem>
                                         <FormLabel>Image</FormLabel>
                                         <FormControl>
-                                            <Input {...field}/>
+                                            <Input
+                                                type='file'
+                                                accept=".jpg,.png,.jpeg"
+                                                {...field}/>
                                         </FormControl>
                                         <FormDescription>
                                             Vous pouvez ajouter une image. Formats autorisés : .jpg, .png, .jpeg

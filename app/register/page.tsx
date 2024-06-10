@@ -5,28 +5,32 @@ import { SubmitButton } from "./submit-button";
 
 const origin = process.env.NEXT_PUBLIC_ORIGIN;
 
-export default function Login({
+export default function Register({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
-  const signIn = async (formData: FormData) => {
+
+  const signUp = async (formData: FormData) => {
     "use server";
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${origin}/auth/callback`,
+      },
     });
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/protected");
+    return redirect("/login?message=Check email to continue sign in process");
   };
 
   return (
@@ -63,6 +67,15 @@ export default function Login({
             placeholder="hello@exemple.com"
             required
         />
+        <label className="text-md" htmlFor="email">
+          Name
+        </label>
+        <input
+            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            name="name"
+            placeholder="John"
+            required
+        />
         <label className="text-md" htmlFor="password">
           Mot de passe
         </label>
@@ -74,14 +87,12 @@ export default function Login({
             required
         />
         <SubmitButton
-            formAction={signIn}
+            formAction={signUp}
             className="primary-green-linear rounded-md px-4 py-2 text-foreground mb-2"
             pendingText="Patientez..."
         >
-          Connexion
+          Inscription
         </SubmitButton>
-        <p className="mt-4 p-4 bg-slate-300 rounded-lg text-foreground text-center">
-          Pas encore de compte ? <br/> <a className="text-blue-500" href="/register">Cliquez ici pour vous inscrire.</a></p>
         {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
               {searchParams.message}
