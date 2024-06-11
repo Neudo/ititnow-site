@@ -59,7 +59,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <FaCalendarAlt size={20}/>
-                            <Link onClick={handleHeader} href="/protected/my-events">Mes évènements</Link>
+                            <Link onClick={handleHeader} href="/protected/mes-evenements">Mes évènements</Link>
                         </div>
                         <div className="flex gap-x-2 items-center">
                             <FaUserFriends size={20}/>

@@ -1,12 +1,11 @@
-"use client"
-import {createClient} from "@/utils/supabase/client";
-import React, {useEffect} from "react";
+'use client'
+import { useParams } from 'next/navigation'
+import React, {useEffect} from 'react';
 import NewEventForm from "@/components/forms/NewEventForm";
-import ListMyEvents from "@/components/admin/ListMyEvents";
+import {createClient} from "@/utils/supabase/client";
 
 function Page() {
     const [userId, setUserId] = React.useState<string | null>(null);
-
     useEffect(() => {
         const fetchUser = async () => {
             const supabase = createClient();
@@ -17,12 +16,12 @@ function Page() {
         };
         fetchUser();
     }, []);
-
+    const { id } = useParams();
     return (
-        <>
-            {userId && <NewEventForm userId={userId} />}
-            {userId && <ListMyEvents userId={userId} />}
-        </>
+        <div>
+            <h1>{id}</h1>
+            {userId && <NewEventForm userId={userId} oldEvent={id} />}
+        </div>
     );
 }
 

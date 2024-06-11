@@ -20,9 +20,15 @@ import {CalendarIcon} from "lucide-react";
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import axios from "axios";
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {CldUploadButton, CldUploadWidget} from 'next-cloudinary';
 import process from "process";
+import {createClient} from "@/utils/supabase/client";
+
+interface NewEventFormProps {
+    userId: string;
+    oldEvent: string | string[] | null;
+}
 
 const formSchema = z.object({
     title: z.string().min(2).max(50),
@@ -34,6 +40,12 @@ const formSchema = z.object({
     establishment: z.string().min(2).max(50),
     contact: z.string().min(2).max(50),
 })
+
+const fetchEvent = async (id: string | string[]) => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`);
+    return response.data;
+};
+
 const createEvent = async (newEvent: {
     title: string;
     description: string;
@@ -58,26 +70,44 @@ const createEvent = async (newEvent: {
     })
     return response.data
 }
-function NewEventForm({userId}: {userId: string}) {
+const updateEvent = async (id: string | string[], updatedEvent: {
+    title: string;
+    description: string;
+    image: string;
+    dateStart: Date | string;
+    contact: string;
+    location: string;
+    establishment: string;
+    dateEnd: Date | string;
+    userId: string;
+}) => {
+    const response = await axios.put(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`, {
+        title: updatedEvent.title,
+        description: updatedEvent.description,
+        image: updatedEvent.image,
+        startDate: updatedEvent.dateStart,
+        endDate: updatedEvent.dateEnd,
+        location: updatedEvent.location,
+        author: updatedEvent.establishment,
+        contact: updatedEvent.contact,
+        userId: updatedEvent.userId
+    });
+    return response.data;
+};
+const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
+
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
     const [resource, setResource] = useState('');
-    const mutation = useMutation({
-        mutationFn: createEvent,
-        onSuccess: () => {
-            console.log("Event created")
-            setLoading(false)
-        },
-        onError: () => {
-            console.log("Error creating event")
-            setLoading(false)
-        }
-    })
+    const oldEventData = useQuery({
+        queryKey: ['oldEvent'],
+        queryFn: fetchEvent(oldEvent),
+    });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: "",
+            title:  "",
             description: "",
             image: "",
             dateStart: new Date(),
@@ -88,25 +118,37 @@ function NewEventForm({userId}: {userId: string}) {
         },
     })
 
+    const mutation = useMutation({
+        mutationFn: oldEvent ? (data: any) => updateEvent(oldEvent, data) : createEvent,
+        onSuccess: () => {
+            console.log("Event saved");
+            setLoading(false);
+        },
+        onError: () => {
+            console.log("Error saving event");
+            setLoading(false);
+        },
+    });
+
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        createEvent({
+        setLoading(true);
+        mutation.mutate({
             title: values.title,
             description: values.description,
             image: resource,
-            dateStart: new Date(values.dateStart).toISOString(),
-            dateEnd: new Date(values.dateEnd).toISOString(),
+            dateStart: values.dateStart.toISOString(),
+            dateEnd: values.dateEnd.toISOString(),
             location: values.location,
             establishment: values.establishment,
             contact: values.contact,
-            userId: userId
-        })
-
-    }
+            userId: userId,
+        });
+    };
 
 
     return (
         <Form {...form}>
-            <form  className="space-y-8 shadow-xl rounded-2xl p-6 max-w-[800px] m-auto">
+            <form  className="space-y-8 shadow-xl rounded-2xl p-6 max-w-[800px] bg-white m-auto">
                 <div className="flex flex-wrap items-start justify-around gap-[20px] mb-5">
                     <FormField
                         control={form.control}
