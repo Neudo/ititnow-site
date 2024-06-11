@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
     Popover,
@@ -99,24 +99,48 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
     const [resource, setResource] = useState('');
-    const oldEventData = useQuery({
-        queryKey: ['oldEvent'],
-        queryFn: fetchEvent(oldEvent),
+
+    const { data: existingEvent, error, isLoading } = useQuery({
+        queryKey: ['event', oldEvent],
+        queryFn: () => fetchEvent(oldEvent as string),
+        enabled: !!oldEvent,
     });
+
+
+    useEffect(() => {
+        if (existingEvent) {
+            form.reset({
+                title: existingEvent.title,
+                description: existingEvent.description,
+                image: existingEvent.image,
+                dateStart: new Date(existingEvent.startDate),
+                dateEnd: new Date(existingEvent.endDate),
+                location: existingEvent.location,
+                establishment: existingEvent.author,
+                contact: existingEvent.contact,
+            });
+            setResource(existingEvent.image);
+            setDuration(new Date(existingEvent.startDate) < new Date(existingEvent.endDate));
+        }
+    }, [existingEvent]);
+
+
+    const defaultValues = {
+        title: "",
+        description: "",
+        image: "",
+        dateStart: new Date(),
+        dateEnd: new Date(),
+        location: "",
+        establishment: "",
+        contact: "",
+    };
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            title:  "",
-            description: "",
-            image: "",
-            dateStart: new Date(),
-            dateEnd: new Date(),
-            location: "",
-            establishment: "",
-            contact: "",
-        },
-    })
+        defaultValues,
+    });
 
     const mutation = useMutation({
         mutationFn: oldEvent ? (data: any) => updateEvent(oldEvent, data) : createEvent,
