@@ -38,7 +38,7 @@ export default async function RootLayout({
     return (
 
 
-        <div className="flex-1 w-full lg:pl-[15.5rem] flex flex-col gap-20 items-start min-h-screen max-w-full">
+        <div className="flex-1 w-full lg:pl-[15.5rem] flex flex-col gap-20 items-start min-h-svh max-w-full">
             <div className="w-full">
                 <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
                     <div className="w-full max-w-4xl flex justify-end items-center p-3 text-sm">

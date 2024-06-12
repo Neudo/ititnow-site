@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="refactor events list component">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="remove log">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/register/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,7 @@
       <workItem from="1717605545863" duration="4247000" />
       <workItem from="1717782375646" duration="1545000" />
       <workItem from="1718125839887" duration="7143000" />
-      <workItem from="1718214337962" duration="10753000" />
+      <workItem from="1718214337962" duration="11742000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -358,7 +357,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718220291841</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="fix register">
+      <option name="closed" value="true" />
+      <created>1718225750390</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718225750390</updated>
+    </task>
+    <task id="LOCAL-00037" summary="remove log">
+      <option name="closed" value="true" />
+      <created>1718225850014</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718225850014</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,8 +391,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update user ok" />
-    <MESSAGE value="start merge edit user form" />
     <MESSAGE value="form almost good" />
     <MESSAGE value="form ok, now need avatar and is all good" />
     <MESSAGE value="front form ok" />
@@ -401,6 +414,8 @@
     <MESSAGE value="update event form ok" />
     <MESSAGE value="front event list + front event form" />
     <MESSAGE value="refactor events list component" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor events list component" />
+    <MESSAGE value="fix register" />
+    <MESSAGE value="remove log" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove log" />
   </component>
 </project>

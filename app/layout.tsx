@@ -28,11 +28,11 @@ export default function RootLayout({
     return (
         <html lang="en" className={GeistSans.className}>
         <body className={cn(
-            "min-h-screen font-sans antialiased",
+            "min-h-svh font-sans antialiased",
             fontSans.variable)}>
         <BodyClassManager />
         <ReactQueryProvider>
-            <main className="min-h-screen flex flex-col items-center">
+            <main className="min-h-svh flex flex-col items-center">
                 {children}
             </main>
         </ReactQueryProvider>
