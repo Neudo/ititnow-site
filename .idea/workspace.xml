@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="crud form event in progress">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024,_17_13_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024,_17_16_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024,_17_27_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024__17_13__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024__17_16__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_06_2024__17_27__Changes_.xml" beforeDir="false" />
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="update event form ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/mes-evenements/evenement/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/mes-evenements/evenement/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +79,8 @@
       <workItem from="1717517500520" duration="1888000" />
       <workItem from="1717605545863" duration="4247000" />
       <workItem from="1717782375646" duration="1545000" />
-      <workItem from="1718125839887" duration="1343000" />
+      <workItem from="1718125839887" duration="7143000" />
+      <workItem from="1718214337962" duration="3783000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -339,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718125447811</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update event form ok">
+      <option name="closed" value="true" />
+      <created>1718127223460</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1718127223460</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +364,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="signout ok" />
     <MESSAGE value="fix front" />
     <MESSAGE value="all good" />
     <MESSAGE value="update user ok" />
@@ -382,6 +388,7 @@
     <MESSAGE value="fix: user type in page" />
     <MESSAGE value="refatoring code" />
     <MESSAGE value="crud form event in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud form event in progress" />
+    <MESSAGE value="update event form ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="update event form ok" />
   </component>
 </project>

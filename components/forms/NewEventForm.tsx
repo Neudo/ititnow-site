@@ -21,7 +21,7 @@ import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import axios from "axios";
 import {useMutation, useQuery} from "@tanstack/react-query";
-import {CldUploadButton, CldUploadWidget} from 'next-cloudinary';
+import {CldUploadButton} from 'next-cloudinary';
 import process from "process";
 import {createClient} from "@/utils/supabase/client";
 
@@ -57,18 +57,23 @@ const createEvent = async (newEvent: {
     dateEnd: Date | string;
     userId: string;
 }) => {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events`, {
-        title: newEvent.title,
-        description: newEvent.description,
-        image: newEvent.image,
-        startDate: newEvent.dateStart,
-        endDate: newEvent.dateEnd,
-        location: newEvent.location,
-        author: newEvent.establishment,
-        contact: newEvent.contact,
-        userId: newEvent.userId
-    })
-    return response.data
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events`, {
+            title: newEvent.title,
+            description: newEvent.description,
+            image: newEvent.image,
+            startDate: newEvent.dateStart,
+            endDate: newEvent.dateEnd,
+            location: newEvent.location,
+            author: newEvent.establishment,
+            contact: newEvent.contact,
+            userId: newEvent.userId
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error creating event");
+        throw error;
+    }
 }
 const updateEvent = async (id: string | string[], updatedEvent: {
     title: string;
@@ -206,15 +211,28 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                             </FormItem>
                         )}
                     />
-                    <CldUploadButton
-                        uploadPreset="ititnow_events"
-                        onSuccess={(result, { widget }) => {
-                            // @ts-ignore
-                            setResource(result?.info.secure_url)
-                            widget.close();
-                        }}
+                    <div className="w-full flex flex-col p-6 justify-start">
+                        <FormLabel>Image</FormLabel>
+                        <CldUploadButton
+                            className={'mr-auto pt-2'}
+                            uploadPreset="ititnow_events"
+                            onSuccess={(result, {widget}) => {
+                                // @ts-ignore
+                                setResource(result?.info.secure_url)
+                                widget.close();
+                            }}
+                        ><Button variant="secondary">Ajouter une image</Button>
+                        </CldUploadButton>
+                    </div>
+                    <label
+                        htmlFor="terms1"
+                        className="text-sm w-full mb-4 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                    </CldUploadButton>
+                        <Checkbox
+                            checked={duration}
+                            onCheckedChange={() => setDuration(!duration)}
+                            id="duration"/> L'évènement se déroule sur plusieurs jours ?
+                    </label>
                     <FormField
                         control={form.control}
                         name="dateStart"
@@ -236,7 +254,7 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                                                 ) : (
                                                     <span>Pick a date</span>
                                                 )}
-                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50"/>
                                             </Button>
                                         </FormControl>
                                     </PopoverTrigger>
@@ -259,23 +277,13 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                             </FormItem>
                         )}
                     />
-                    <label
-                        htmlFor="terms1"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                        <Checkbox
-                            checked={duration}
-                            onCheckedChange={() => setDuration(!duration)}
-                            id="duration"/> L'évènement se déroule sur plusieurs jours ?
-                    </label>
-
                     {duration && (
                         <FormField
                             control={form.control}
                             name="dateEnd"
                             render={({field}) => (
                                 <FormItem className="flex flex-col">
-                                    <FormLabel>Date de l'évènement</FormLabel>
+                                    <FormLabel>Date de fin de l'évènement</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
@@ -291,7 +299,7 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                                                     ) : (
                                                         <span>Pick a date</span>
                                                     )}
-                                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50"/>
                                                 </Button>
                                             </FormControl>
                                         </PopoverTrigger>
@@ -308,7 +316,7 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                                         </PopoverContent>
                                     </Popover>
                                     <FormDescription>
-                                        Date de début de votre évènement.
+                                        Date de fin de votre évènement.
                                     </FormDescription>
                                     <FormMessage/>
                                 </FormItem>

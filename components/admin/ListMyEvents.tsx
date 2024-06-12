@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {convertDate} from "@/lib/utils";
-import EditBtn from "@/components/forms/EditBtn";
 import {FaRegEdit} from "react-icons/fa";
 import {createClient} from "@/utils/supabase/client";
+import axios from "axios";
+import process from "process";
+import { FiTrash2 } from "react-icons/fi";
 
 interface Event {
     id: string;
@@ -28,12 +30,14 @@ function ListMyEvents({userId}: {userId: string}) {
                 console.error('Error fetching events:', error);
             }
             setMyEvents(myEvents);
-
         }
         fetchEvents();
-    }, []);
+    }, [myEvents]);
 
-
+    const deleteEvent = async (id: string) => {
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`);
+        return response.data;
+    }
 
     return (
         <div>
@@ -49,7 +53,8 @@ function ListMyEvents({userId}: {userId: string}) {
                             <TableHead className="text-center">Lieu</TableHead>
                             <TableHead className="text-center min-w-[130px]">Auteur</TableHead>
                             <TableHead className="text-center min-w-[130px]">Statut</TableHead>
-                            <TableHead className="text-right">Editer</TableHead>
+                            <TableHead className="text-center">Editer</TableHead>
+                            <TableHead className="text-right">Supprimer</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -62,7 +67,8 @@ function ListMyEvents({userId}: {userId: string}) {
                                 <TableCell className="text-center">{event.location}</TableCell>
                                 <TableCell className="text-center">{event.author}</TableCell>
                                 <TableCell className="text-center"> <span className="px-3 py-2 rounded-full font-bold text-xs" style={convertDate(Date()) === convertDate(event.startDate) ? {backgroundColor: '#de815e', color: 'white'} : {backgroundColor: '#51796F', color:'white'}}>{convertDate(Date()) === convertDate(event.startDate) ? 'En cours' : 'À venir' }</span></TableCell>
-                                <TableCell className="flex justify-end "> <EditBtn eventId={event.id} /> <FaRegEdit color="#51796F" size={20}/></TableCell>
+                                <TableCell className="text-center"> <a href={`/protected/mes-evenements/evenement/${event.id}`} > <FaRegEdit className="mx-auto" color="#51796F" size={24}/></a></TableCell>
+                                <TableCell className="text-center"> <button onClick={() => deleteEvent(event.id)} > <FiTrash2  color="#FF5B00" size={22} /></button></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

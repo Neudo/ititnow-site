@@ -19,7 +19,6 @@ function Page() {
     const { id } = useParams();
     return (
         <div>
-            <h1>{id}</h1>
             {userId && <NewEventForm userId={userId} oldEvent={id} />}
         </div>
     );

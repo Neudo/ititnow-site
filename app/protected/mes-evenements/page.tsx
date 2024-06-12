@@ -2,6 +2,7 @@
 import {createClient} from "@/utils/supabase/client";
 import React, {useEffect} from "react";
 import ListMyEvents from "@/components/admin/ListMyEvents";
+import {Button} from "@/components/ui/button";
 
 function Page() {
     const [userId, setUserId] = React.useState<string | null>(null);
@@ -19,8 +20,12 @@ function Page() {
 
     return (
         <>
-            <a href="/protected/mes-evenements/evenement" className="text-blue-500">Ajouter un évènement</a>
-            {userId && <ListMyEvents userId={userId} />}
+            <Button className="w-[200px]" title="Ajouter un évènement">
+                <a href="/protected/mes-evenements/evenement"
+                   className="text-white">Ajouter un évènement</a>
+            </Button>
+
+            {userId && <ListMyEvents userId={userId}/>}
         </>
     );
 }
