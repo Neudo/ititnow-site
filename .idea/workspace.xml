@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="front event list + front event form">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="refactor events list component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/register/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +76,7 @@
       <workItem from="1717605545863" duration="4247000" />
       <workItem from="1717782375646" duration="1545000" />
       <workItem from="1718125839887" duration="7143000" />
-      <workItem from="1718214337962" duration="5622000" />
+      <workItem from="1718214337962" duration="10753000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -352,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718218375532</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="refactor events list component">
+      <option name="closed" value="true" />
+      <created>1718220291841</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718220291841</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +376,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="all good" />
     <MESSAGE value="update user ok" />
     <MESSAGE value="start merge edit user form" />
     <MESSAGE value="form almost good" />
@@ -395,6 +400,7 @@
     <MESSAGE value="crud form event in progress" />
     <MESSAGE value="update event form ok" />
     <MESSAGE value="front event list + front event form" />
-    <option name="LAST_COMMIT_MESSAGE" value="front event list + front event form" />
+    <MESSAGE value="refactor events list component" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor events list component" />
   </component>
 </project>

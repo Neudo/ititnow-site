@@ -13,12 +13,13 @@ export default function Register({
 
   const signUp = async (formData: FormData) => {
     "use server";
-
+    const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    // Créez l'utilisateur dans la partie Auth de Supabase
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -26,12 +27,39 @@ export default function Register({
       },
     });
 
-    if (error) {
+    if (signUpError) {
+      console.log(signUpError);
       return redirect("/login?message=Could not authenticate user");
+    }
+
+    console.log('User signed up:', signUpData);
+
+    // Insérez l'utilisateur dans la table 'Users'
+    const user = signUpData.user;
+    if (user) {
+      const { error: insertError } = await supabase.from('Users').insert([{
+        id: user.id,
+        email,
+        name,
+        password: 'Test ok',
+        avatar: 'Test ok',
+        isAdmin: false,
+        createdAt: user.email_confirmed_at,
+        nBEvents: 0,
+      }]);
+
+      if (insertError) {
+        console.log(insertError);
+        return redirect("/login?message=Could not add user to Users table");
+      }
+
+      console.log('User added to Users table');
     }
 
     return redirect("/login?message=Check email to continue sign in process");
   };
+
+
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
