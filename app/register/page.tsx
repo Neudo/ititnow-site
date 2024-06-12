@@ -18,7 +18,6 @@ export default function Register({
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    // Créez l'utilisateur dans la partie Auth de Supabase
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -28,13 +27,9 @@ export default function Register({
     });
 
     if (signUpError) {
-      console.log(signUpError);
       return redirect("/login?message=Could not authenticate user");
     }
 
-    console.log('User signed up:', signUpData);
-
-    // Insérez l'utilisateur dans la table 'Users'
     const user = signUpData.user;
     if (user) {
       const { error: insertError } = await supabase.from('Users').insert([{
@@ -53,7 +48,6 @@ export default function Register({
         return redirect("/login?message=Could not add user to Users table");
       }
 
-      console.log('User added to Users table');
     }
 
     return redirect("/login?message=Check email to continue sign in process");
