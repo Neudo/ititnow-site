@@ -19,20 +19,8 @@ interface Event {
 }
 
 
-function ListMyEvents({userId}: {userId: string}) {
-    const [myEvents, setMyEvents] = React.useState<any>(null);
+function ListEvents({events}: { events: Event[]}) {
 
-    useEffect(() => {
-        const fetchEvents = async () => {
-            const supabase = createClient();
-            const {data: myEvents, error} = await supabase.from('Events').select('*').eq('userId', userId)
-            if (error) {
-                console.error('Error fetching events:', error);
-            }
-            setMyEvents(myEvents);
-        }
-        fetchEvents();
-    }, [myEvents]);
 
     const deleteEvent = async (id: string) => {
         const response = await axios.delete(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`);
@@ -43,7 +31,7 @@ function ListMyEvents({userId}: {userId: string}) {
         <div>
             <h1 className="px-4 py-5 font-extrabold primary-green-linear text-white rounded-2xl w-[96%] mx-auto translate-y-[30px] z-10 relative shadow-2xl">Liste
                 de mes évènements</h1>
-            {myEvents ? (
+            {events ? (
                 <Table className="px-6">
                     <TableHeader>
                         <TableRow>
@@ -58,7 +46,7 @@ function ListMyEvents({userId}: {userId: string}) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {myEvents?.map((event: Event) => (
+                        {events?.map((event: Event) => (
 
                             <TableRow className="cursor-pointer" key={event.id}>
                                 <TableCell className="font-medium items-center">{event.title}</TableCell>
@@ -81,4 +69,4 @@ function ListMyEvents({userId}: {userId: string}) {
     );
 }
 
-export default ListMyEvents;
+export default ListEvents;
