@@ -4,6 +4,8 @@ import React, {useEffect} from 'react';
 import NewEventForm from "@/components/forms/NewEventForm";
 import {createClient} from "@/utils/supabase/client";
 
+
+
 function Page() {
     const [userId, setUserId] = React.useState<string | null>(null);
     useEffect(() => {

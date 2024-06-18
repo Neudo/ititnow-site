@@ -46,7 +46,6 @@ async function Page() {
                             <TableHead className="text-center" >Nb. d'évènements</TableHead>
                             <TableHead className="text-center" >Status</TableHead>
                             <TableHead className="text-center" >Date d'inscription</TableHead>
-                            <TableHead className="text-right">Editer</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -57,7 +56,6 @@ async function Page() {
                                 <TableCell className="text-center">{user.nBEvents}</TableCell>
                                 <TableCell className="text-center">{user.isAdmin ? 'Admin' : 'Client'}</TableCell>
                                 <TableCell className="text-center">{convertDate(user.createdAt)}</TableCell>
-                                <TableCell className="flex justify-end "><FaRegEdit color="#51796F" size={20}/></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

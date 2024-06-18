@@ -18,7 +18,7 @@ export default async function ProtectedPage() {
   const isAdmin = UserLogged.isAdmin
 
   return (<div>
-        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer/>}
+        {isAdmin ? <HomeAdmin userData={UserLogged} /> : <HomeCustomer userData={UserLogged}/>}
       </div>
 
   );

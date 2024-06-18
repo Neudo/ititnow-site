@@ -23,7 +23,8 @@ import axios from "axios";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {CldUploadButton} from 'next-cloudinary';
 import process from "process";
-import {createClient} from "@/utils/supabase/client";
+import {Toaster} from "@/components/ui/sonner";
+import {toast} from "sonner";
 
 interface NewEventFormProps {
     userId: string;
@@ -46,61 +47,7 @@ const fetchEvent = async (id: string | string[]) => {
     return response.data;
 };
 
-const createEvent = async (newEvent: {
-    title: string;
-    description: string;
-    image: string;
-    dateStart: Date | string;
-    contact: string;
-    location: string;
-    establishment: string;
-    dateEnd: Date | string;
-    userId: string;
-}) => {
-    try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events`, {
-            title: newEvent.title,
-            description: newEvent.description,
-            image: newEvent.image,
-            startDate: newEvent.dateStart,
-            endDate: newEvent.dateEnd,
-            location: newEvent.location,
-            author: newEvent.establishment,
-            contact: newEvent.contact,
-            userId: newEvent.userId
-        });
-        return response.data;
-    } catch (error) {
-        console.error("Error creating event");
-        throw error;
-    }
-}
-const updateEvent = async (id: string | string[], updatedEvent: {
-    title: string;
-    description: string;
-    image: string;
-    dateStart: Date | string;
-    contact: string;
-    location: string;
-    establishment: string;
-    dateEnd: Date | string;
-    userId: string;
-}) => {
-    const response = await axios.put(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`, {
-        title: updatedEvent.title,
-        description: updatedEvent.description,
-        image: updatedEvent.image,
-        startDate: updatedEvent.dateStart,
-        endDate: updatedEvent.dateEnd,
-        location: updatedEvent.location,
-        author: updatedEvent.establishment,
-        contact: updatedEvent.contact,
-        userId: updatedEvent.userId
-    });
-    return response.data;
-};
 const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
-
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = React.useState<boolean | undefined>(false)
     const [resource, setResource] = useState('');
@@ -110,6 +57,67 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
         queryFn: () => fetchEvent(oldEvent as string),
         enabled: !!oldEvent,
     });
+
+    const createEvent = async (newEvent: {
+        title: string;
+        description: string;
+        image: string;
+        dateStart: Date | string;
+        contact: string;
+        location: string;
+        establishment: string;
+        dateEnd: Date | string;
+        userId: string;
+    }) => {
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events`, {
+                title: newEvent.title,
+                description: newEvent.description,
+                image: newEvent.image,
+                startDate: newEvent.dateStart,
+                endDate: newEvent.dateEnd,
+                location: newEvent.location,
+                author: newEvent.establishment,
+                contact: newEvent.contact,
+                userId: newEvent.userId
+            });
+            toast("Évènement créé avec succès")
+            form.reset()
+
+
+            return response.data;
+        } catch (error) {
+            toast("Une erreur est survenue lors de la création de l'évènement")
+            throw error;
+        }
+    }
+
+    const updateEvent = async (id: string | string[], updatedEvent: {
+        title: string;
+        description: string;
+        image: string;
+        dateStart: Date | string;
+        contact: string;
+        location: string;
+        establishment: string;
+        dateEnd: Date | string;
+        userId: string;
+    }) => {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`, {
+            title: updatedEvent.title,
+            description: updatedEvent.description,
+            image: updatedEvent.image,
+            startDate: updatedEvent.dateStart,
+            endDate: updatedEvent.dateEnd,
+            location: updatedEvent.location,
+            author: updatedEvent.establishment,
+            contact: updatedEvent.contact,
+            userId: updatedEvent.userId
+        });
+        toast("Évènement mis à jour avec succès")
+        toast("Une erreur est survenue lors de la mise à jour de l'évènement")
+        return response.data;
+    };
 
 
     useEffect(() => {
@@ -174,8 +182,8 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
         });
     };
 
-
     return (
+        <>
         <Form {...form}>
             <form  className="space-y-8 shadow-xl rounded-2xl p-6 max-w-[800px] bg-white m-auto">
                 <div className="flex flex-wrap items-start justify-around gap-[20px] mb-5">
@@ -383,6 +391,8 @@ const NewEventForm: React.FC<NewEventFormProps> = ({ userId, oldEvent }) => {
                 >{loading ? 'Loading ...' : 'Envoyer'}</Button>
             </form>
         </Form>
+        <Toaster/>
+    </>
     );
 }
 

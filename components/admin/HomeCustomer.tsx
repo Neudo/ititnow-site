@@ -1,8 +1,9 @@
 import React from 'react';
 
-function HomeCustomer() {
+function HomeCustomer({userData}: {userData:{name:string}}) {
+    console.log(userData)
     return (
-        <div>Customer</div>
+        <div> Bienvenue, {userData.name}.</div>
     );
 }
 

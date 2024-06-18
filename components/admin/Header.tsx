@@ -49,26 +49,32 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                 <hr className="m-[1rem] bg-transparent bg-gradient-to-l"/>
                 <div className="flex flex-col justify-between h-full">
                     <div className="p-6 flex flex-col gap-6">
+
                         <div className="flex gap-x-2 items-center">
                             <MdDashboard size={20}/>
                             <Link onClick={handleHeader} href="/protected">Dashboard</Link>
                         </div>
-                        <div className="flex gap-x-2 items-center">
-                            <FaCalendarAlt size={20}/>
-                            <Link onClick={handleHeader} href="/protected/events">Évènements</Link>
-                        </div>
+                        {isAdmin && (
+                            <div className="flex gap-x-2 items-center">
+                                <FaCalendarAlt size={20}/>
+                                <Link onClick={handleHeader} href="/protected/events">Évènements</Link>
+                            </div>
+                        )}
                         <div className="flex gap-x-2 items-center">
                             <FaCalendarAlt size={20}/>
                             <Link onClick={handleHeader} href="/protected/mes-evenements">Mes évènements</Link>
                         </div>
-                        <div className="flex gap-x-2 items-center">
-                            <FaUserFriends size={20}/>
-                            <Link onClick={handleHeader} href="/protected/customers">Utilisateurs</Link>
-                        </div>
+                        {isAdmin && (
+                            <div className="flex gap-x-2 items-center">
+                                <FaUserFriends size={20}/>
+                                <Link onClick={handleHeader} href="/protected/customers">Utilisateurs</Link>
+                            </div>
+                        )}
                         <div className="flex gap-x-2 items-center">
                             <MdManageAccounts size={20}/>
                             <Link onClick={handleHeader} href="/protected/me">Mon profil</Link>
                         </div>
+
                     </div>
                     <div className="p-6">
                         <button

@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="remove log">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="fix min h for mobile">
+      <change afterPath="$PROJECT_DIR$/@types/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/forms/EditEstablishmentForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/customers/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/customers/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/me/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/me/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/mes-evenements/evenement/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/mes-evenements/evenement/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/HomeCustomer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/HomeCustomer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/NewEventForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +56,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.install bcrypt.executor&quot;: &quot;Run&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/quentin/Desktop/Dossiers Ititnow/ititnow-site/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -75,7 +88,10 @@
       <workItem from="1717605545863" duration="4247000" />
       <workItem from="1717782375646" duration="1545000" />
       <workItem from="1718125839887" duration="7143000" />
-      <workItem from="1718214337962" duration="11742000" />
+      <workItem from="1718214337962" duration="16219000" />
+      <workItem from="1718307353768" duration="4698000" />
+      <workItem from="1718483678344" duration="9110000" />
+      <workItem from="1718701315725" duration="382000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -373,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718225850014</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="fix min h for mobile">
+      <option name="closed" value="true" />
+      <created>1718226938914</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718226938914</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +415,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="form almost good" />
     <MESSAGE value="form ok, now need avatar and is all good" />
     <MESSAGE value="front form ok" />
     <MESSAGE value="start page my evetns" />
@@ -416,6 +439,7 @@
     <MESSAGE value="refactor events list component" />
     <MESSAGE value="fix register" />
     <MESSAGE value="remove log" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove log" />
+    <MESSAGE value="fix min h for mobile" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix min h for mobile" />
   </component>
 </project>
