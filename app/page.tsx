@@ -16,8 +16,8 @@ export default async function Index() {
             </nav>
 
             <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-6xl px-3">
-
                 <main>
+                    <div className="md:pb-[150px]"></div>
                     <Container>
                     <div className="min-w-[300px] md:w-1/2 relative flex justify-center">
                         <img src={iphone.src} alt="Iphone mokup"
@@ -37,9 +37,8 @@ export default async function Index() {
                         </div>
                     </div>
                     </Container>
-
                     <Container>
-                        <div className="">
+                        <div className="reveal-item">
                             <h2 className="font-bold text-4xl mb-2">Connectez-vous afin d’accéder
                                 à plus de fonctionnalités</h2>
                             <p>Ajouter des restaurants à vos favoris : Gardez une liste de vos endroits préférés pour les retrouver facilement plus tard.</p>
@@ -47,21 +46,19 @@ export default async function Index() {
                                 <a className="font-bold " href="/login">Connexion</a>
                             </div>
                         </div>
-                        <div className="w-[250px]">
+                        <div className="reveal-item w-[250px]">
                             <img src={iphoneAuth.src} alt=""/>
                         </div>
                     </Container>
-
                     <Container>
                         <div className="text-center">
                             <h2 className="font-bold text-4xl mb-2">Accédez aux évènements du moment.</h2>
                             <p>Vous êtes restaurateur ? Boostez votre visibilité en publiant vos événements sur notre plateforme ! Qu'il s'agisse de soirées à thème, de dégustations exclusives ou de promotions spéciales, notre application vous permet de toucher une audience large et diversifiée, passionnée par la découverte de nouveaux établissements. Rejoignez-nous et faites connaître vos événements en quelques clics !</p>
-                            <div className="p-5 mt-[22px] relative max-w-[315px] secondary text-center rounded-lg mx-auto">
+                            <div className="p-5 reveal-item mt-[22px] relative max-w-[315px] secondary text-center rounded-lg mx-auto">
                                 <a className="font-bold" href="/login">Connexion</a>
                             </div>
                         </div>
                     </Container>
-
                 </main>
             </div>
 

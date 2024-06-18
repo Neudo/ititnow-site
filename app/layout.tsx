@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={GeistSans.className}>
-        <body className={cn(
+        <body suppressHydrationWarning={true} className={cn(
             "min-h-svh font-sans antialiased",
             fontSans.variable)}>
         <BodyClassManager />
