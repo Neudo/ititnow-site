@@ -57,7 +57,7 @@ function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
                         {isAdmin && (
                             <div className="flex gap-x-2 items-center">
                                 <FaCalendarAlt size={20}/>
-                                <Link onClick={handleHeader} href="/protected/events">Évènements</Link>
+                                <Link onClick={handleHeader} href="/protected/events?page=1">Évènements</Link>
                             </div>
                         )}
                         <div className="flex gap-x-2 items-center">
