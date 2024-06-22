@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="minor fixs">
-      <change afterPath="$PROJECT_DIR$/app/customHooks/useGsapAnimation.tsx" afterDir="false" />
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="add animations gsap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/events/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditEstablishmentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditEstablishmentForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +86,7 @@
       <workItem from="1718307353768" duration="4698000" />
       <workItem from="1718483678344" duration="9110000" />
       <workItem from="1718701315725" duration="10323000" />
+      <workItem from="1719056113205" duration="2639000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -405,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718734749396</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="add animations gsap">
+      <option name="closed" value="true" />
+      <created>1718741044366</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718741044366</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start page my evetns" />
     <MESSAGE value="start form publish event" />
     <MESSAGE value="form front 90% ok" />
     <MESSAGE value="form front 95% ok" />
@@ -448,6 +458,7 @@
     <MESSAGE value="fix min h for mobile" />
     <MESSAGE value="conditional display nav item / refactoring / user form" />
     <MESSAGE value="minor fixs" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixs" />
+    <MESSAGE value="add animations gsap" />
+    <option name="LAST_COMMIT_MESSAGE" value="add animations gsap" />
   </component>
 </project>

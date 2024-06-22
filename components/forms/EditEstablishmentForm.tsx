@@ -1,7 +1,7 @@
 'use client'
 import React, { useCallback, useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { z } from 'zod';
+import {undefined, z} from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
@@ -20,13 +20,11 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-    name: z.string().min(2).max(50),
-    email: z.string().email().min(2).max(50),
-    password: z.string().min(8, {message: 'Votre nouveau mot de passe doit contenir au moins 8 caractères.'}).max(50),
-    passwordConfirmation: z.string().min(8).max(50),
-}).refine((data) => data.password === data.passwordConfirmation, {
-    message: "Les mots de passe doivent correspondre",
-    path: ["passwordConfirmation"],
+    address: z.string().min(2).max(150),
+    city: z.string().min(2).max(50),
+    instagram: z.string().min(2).max(50),
+    tel: z.string().min(2).max(50),
+    website: z.string().min(2).max(50),
 });
 
 export type UserProfile = {
@@ -41,49 +39,31 @@ function EditEstablishmentFrom({ user }: { user: UserProfile | null }) {
     const [loading, setLoading] = useState(true)
     const [userLogged, setUserLogged] = useState<UserProfile | null>(null)
 
-    const getProfile = useCallback(async () => {
-        try {
-            setLoading(true)
-
-            const { data, error, status } = await supabase
-                .from('Users')
-                .select(`email, password`)
-                .eq('id', user?.id)
-                .single()
-
-            if (error && status !== 406) {
-                console.log(error)
-                throw error
-            }
-            if (data) {
-                setUserLogged(data as UserProfile)
-            }
-        } catch (error) {
-            alert('Error loading user data!')
-        } finally {
-            setLoading(false)
-        }
-    }, [user, supabase])
-
     useEffect(() => {
-        getProfile()
-    }, [user, getProfile])
+        if(user) {
+            setLoading(false)
+            setUserLogged(user)
+        }
+    }, [user]);
 
 
-    async function updateEstablishment({
-                                           email,
-                                           password
-                                       }: {
 
-        email: string | null
-        password: string | null
+    async function updateEstablishment({address, city, instagram, tel, website}: {
+        address: string,
+        city: string,
+        instagram: string,
+        tel: string,
+        website: string
     }) {
         try {
             setLoading(true)
             const { error } = await supabase.from('Users').upsert({
                 id: user?.id as string,
-                email,
-                password: password
+                address,
+                city,
+                instagram,
+                tel,
+                website
             })
             if (error) throw error
             toast({
@@ -102,17 +82,21 @@ function EditEstablishmentFrom({ user }: { user: UserProfile | null }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-
-            email : user?.email || "",
-            password: "",
-            passwordConfirmation: "",
+            address: userLogged?.email || '',
+            city: userLogged?.email || '',
+            instagram: userLogged?.email || '',
+            tel: userLogged?.email || '',
+            website: userLogged?.email || '',
         },
     });
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
         updateEstablishment({
-            email: data.email,
-            password: data.password,
+            address: data.address,
+            city: data.city,
+            instagram: data.instagram,
+            tel: data.tel,
+            website: data.website
         });
     }
 
@@ -123,19 +107,18 @@ function EditEstablishmentFrom({ user }: { user: UserProfile | null }) {
                     <div className="flex flex-wrap items-start justify-around gap-[20px] mb-5">
                         <FormField
                             control={form.control}
-                            name="email"
+                            name="address"
                             render={({field}) => (
                                 <FormItem className={"w-full"}>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>Adresse</FormLabel>
                                     <FormControl>
                                         <Input
-                                            type={"email"}
                                             placeholder={userLogged?.email || ''}
                                             {...field}
                                         />
                                     </FormControl>
                                     <FormDescription>
-                                        Votre adresse email.
+                                        L'adresse de l'établissement ou du lieu de votre évènement.
                                     </FormDescription>
                                     <FormMessage/>
                                 </FormItem>
@@ -143,28 +126,51 @@ function EditEstablishmentFrom({ user }: { user: UserProfile | null }) {
                         />
                         <FormField
                             control={form.control}
-                            name="password"
+                            name="city"
                             render={({field}) => (
                                 <FormItem className={"w-full md:w-[47%]"}>
-                                    <FormLabel>Nouveau mot de passe</FormLabel>
+                                    <FormLabel>La ville</FormLabel>
                                     <FormControl>
-                                        <Input type={"password"} placeholder="******" {...field} />
+                                        <Input {...field} />
                                     </FormControl>
-                                    <FormDescription>
-                                        Votre nouveau mot de passe.
-                                    </FormDescription>
                                     <FormMessage/>
                                 </FormItem>
                             )}
                         />
                         <FormField
                             control={form.control}
-                            name="passwordConfirmation"
+                            name="instagram"
                             render={({field}) => (
                                 <FormItem className={"w-full md:w-[47%]"}>
-                                    <FormLabel>Confirmer mot de passe</FormLabel>
+                                    <FormLabel>Instagram</FormLabel>
                                     <FormControl>
-                                        <Input type={"password"} placeholder="******" {...field} />
+                                        <Input  {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="tel"
+                            render={({field}) => (
+                                <FormItem className={"w-full md:w-[47%]"}>
+                                    <FormLabel>Numéro de tel</FormLabel>
+                                    <FormControl>
+                                        <Input  {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="website"
+                            render={({field}) => (
+                                <FormItem className={"w-full md:w-[47%]"}>
+                                    <FormLabel>Site internet</FormLabel>
+                                    <FormControl>
+                                        <Input  {...field} />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>
