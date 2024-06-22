@@ -25,14 +25,13 @@ export interface SearchParamsProps {
 export default function Page({searchParams}: Readonly<SearchParamsProps>) {
     const [events, setEvents] = useState<any>(null);
     const [totalEvents, setTotalEvents] = useState<number>(0);
-    const [refreshKey, setRefreshKey] = useState<number>(0); // New state variable
+    const [refreshKey, setRefreshKey] = useState<number>(0)
     const currentPage = Number(searchParams?.page) || 1;
     const PAGE_SIZE = 10
 
 
     useEffect(() => {
         const fetchEvents = async () => {
-            console.log('fetching events')
             const supabase = createClient();
             const startIdx = (currentPage - 1) * PAGE_SIZE;
             const endIdx = startIdx + PAGE_SIZE - 1;

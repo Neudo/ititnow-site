@@ -10,6 +10,7 @@ function Page({searchParams}: Readonly<SearchParamsProps>) {
     const [userId, setUserId] = React.useState<string | null>(null);
     const [myEvents, setMyEvents] = React.useState<any>(null);
     const [totalEvents, setTotalEvents] = useState<number>(0);
+    const [refreshKey, setRefreshKey] = useState<number>(0)
     const PAGE_SIZE = 10
     const pageCount = Math.ceil(totalEvents / PAGE_SIZE);
     const currentPage = Number(searchParams?.page) || 1;
@@ -30,7 +31,7 @@ function Page({searchParams}: Readonly<SearchParamsProps>) {
         if (userId && myEvents === null) {
             fetchEvents();
         }
-    }, [userId]);
+    }, [userId, refreshKey]);
 
     const fetchEvents = async () => {
         const supabase = createClient();
@@ -48,6 +49,11 @@ function Page({searchParams}: Readonly<SearchParamsProps>) {
         setMyEvents(myEvents);
         setTotalEvents(count || 0);
     }
+
+    const refreshEvents = () => {
+        setRefreshKey(oldKey => oldKey + 1);
+    }
+
     return (
         <>
             <Button className="w-[200px]" title="Ajouter un évènement">
@@ -57,7 +63,7 @@ function Page({searchParams}: Readonly<SearchParamsProps>) {
 
             {userId &&
                 <>
-                <ListEvents events={myEvents} pageCount={pageCount}/>
+                <ListEvents events={myEvents} pageCount={pageCount} refreshEvents={refreshEvents}/>
                 </>
             }
         </>

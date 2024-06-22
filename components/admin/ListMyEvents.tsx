@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {convertDate} from "@/lib/utils";
@@ -14,6 +15,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
+import {Toaster} from "@/components/ui/toaster";
 
 
 
@@ -29,10 +33,15 @@ interface Event {
 }
 
 function ListEvents({events, pageCount, refreshEvents}: { events: Event[], pageCount: number, refreshEvents: () => void }) {
+    const { toast } = useToast()
+
 
     const deleteEvent = async (id: string) => {
         const response = await axios.delete(`${process.env.NEXT_PUBLIC_RENDER_API_URL}events/${id}`);
         refreshEvents();
+        toast({
+            description: "Votre évènement a bien été supprimé",
+        })
         return response.data;
     }
 
@@ -42,9 +51,6 @@ function ListEvents({events, pageCount, refreshEvents}: { events: Event[], pageC
                 de mes évènements</h1>
             {events ? (
                 <>
-
-                    {/*Modal delete*/}
-
                     <Table className="px-6">
                         <TableHeader>
                             <TableRow>
@@ -70,13 +76,14 @@ function ListEvents({events, pageCount, refreshEvents}: { events: Event[], pageC
                                     <TableCell className="text-center"> <span className="px-3 py-2 rounded-full font-bold text-xs" style={convertDate(Date()) === convertDate(event.startDate) ? {backgroundColor: '#de815e', color: 'white'} : {backgroundColor: '#51796F', color:'white'}}>{convertDate(Date()) === convertDate(event.startDate) ? 'En cours' : 'À venir' }</span></TableCell>
                                     <TableCell className="text-center"> <a href={`/protected/mes-evenements/evenement/${event.id}`} > <FaRegEdit className="mx-auto" color="#51796F" size={24}/></a></TableCell>
                                     <TableCell className="text-center">
+                                        {/*Modal delete*/}
                                         <Dialog>
                                             <DialogTrigger><FiTrash2 color="#FF5B00" size={22}/></DialogTrigger>
                                             <DialogContent>
                                                 <DialogHeader>
                                                     <DialogTitle>Êtes vous sûre ?</DialogTitle>
                                                     <DialogDescription>
-                                                        <p>Vous êtes sur le point de supprimer cet évènement, cette action est irreversible.</p>
+                                                        Vous êtes sur le point de supprimer cet évènement, cette action est irreversible.
                                                         <DialogClose asChild>
                                                             <button className="bg-red-500 p-3 rounded-lg mt-3 text-slate-100" onClick={() => deleteEvent(event.id)}>Supprimer</button>
                                                         </DialogClose>
@@ -90,6 +97,7 @@ function ListEvents({events, pageCount, refreshEvents}: { events: Event[], pageC
                             ))}
                         </TableBody>
                     </Table>
+                    <Toaster />
                     {pageCount > 1 && <PaginationComponent pageCount={pageCount} />}
 
                 </>
