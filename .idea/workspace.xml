@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="add warning modal when delete event">
+    <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="added dialog component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/mes-evenements/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/ListMyEvents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditEstablishmentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditEstablishmentForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/EditUserForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,7 @@
       <workItem from="1718307353768" duration="4698000" />
       <workItem from="1718483678344" duration="9110000" />
       <workItem from="1718701315725" duration="10323000" />
-      <workItem from="1719056113205" duration="3726000" />
+      <workItem from="1719056113205" duration="4486000" />
     </task>
     <task id="LOCAL-00001" summary="query event ok">
       <option name="closed" value="true" />
@@ -421,7 +420,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719062075052</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix refreshing event">
+      <option name="closed" value="true" />
+      <created>1719062910640</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1719062910640</updated>
+    </task>
+    <task id="LOCAL-00044" summary="added dialog component">
+      <option name="closed" value="true" />
+      <created>1719062947483</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1719062947483</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,8 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="form front 90% ok" />
-    <MESSAGE value="form front 95% ok" />
     <MESSAGE value="add ui" />
     <MESSAGE value="send all value" />
     <MESSAGE value="start list my events" />
@@ -464,6 +477,8 @@
     <MESSAGE value="minor fixs" />
     <MESSAGE value="add animations gsap" />
     <MESSAGE value="add warning modal when delete event" />
-    <option name="LAST_COMMIT_MESSAGE" value="add warning modal when delete event" />
+    <MESSAGE value="fix refreshing event" />
+    <MESSAGE value="added dialog component" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dialog component" />
   </component>
 </project>

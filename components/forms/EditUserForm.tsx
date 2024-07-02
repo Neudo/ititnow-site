@@ -120,6 +120,7 @@ function EditUserForm({ user }: { user: UserProfile | null }) {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 shadow-xl rounded-2xl bg-white p-6 max-w-[800px] m-auto">
                     <div className="flex flex-wrap items-start justify-around gap-[20px] mb-5">
+                        <h1 className="font-bold text-xl">Vos informations personnelles</h1>
                         <FormField
                             control={form.control}
                             name="email"
