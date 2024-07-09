@@ -20,12 +20,11 @@ async function Introduction() {
 
     return (
         <div className="flex gap-5 flex-col md:flex-row flex-wrap">
-            <SmallCard title={"Évènements"} number={Events?.length} color={"#000"} picto={"events"} />
+            <SmallCard title={"Total Évènements"} number={Events?.length} color={"#000"} picto={"events"} />
             <SmallCard title={"Nombre d'utilisateurs"} number={Users?.length} color={'#51796F'} picto={"people"} />
             <SmallCard title={"Évènements en ce moment"} number={EventsNow?.length} color={'#245759'} picto={"event-now"} />
-            <BigCard title={"Big card"}/>
-        {/*BigCard graphique inscrit sur le mois */}
-        {/*BigCard graphique events sur le mois */}
+            <BigCard title={"Évènements mensuel"}/>
+            {/*<BigCard title={"Inscription mensuel"}/>*/}
         </div>
     );
 }
