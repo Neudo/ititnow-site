@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cdcaba5-b0bd-4f76-8deb-930339772c83" name="Changes" comment="edit user form">
-      <change afterPath="$PROJECT_DIR$/app/ResizableBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/protected/acheter-credit/echec/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/protected/acheter-credit/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/protected/acheter-credit/validation/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/useDemoConfig.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Bar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stripe.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/BigCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/BigCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/admin/Introduction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Introduction.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/acheter-credit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/acheter-credit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/acheter-credit/validation/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/acheter-credit/validation/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/protected/customers/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/protected/customers/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/admin/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

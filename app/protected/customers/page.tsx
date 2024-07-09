@@ -20,7 +20,6 @@ interface User {
     nBEvents: number;
     isAdmin: boolean;
     createdAt: string;
-
 }
 
 

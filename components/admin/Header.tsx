@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { FiMenu } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
@@ -12,8 +11,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {createClient} from "@/utils/supabase/client";
 import { useRouter } from 'next/navigation';
-
-
 
 function Header({isAdmin}: {isAdmin: boolean }): React.ReactElement {
     const [navHidden, setNavHidden] = React.useState<boolean>(true);
